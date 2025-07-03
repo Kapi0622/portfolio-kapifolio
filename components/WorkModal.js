@@ -10,10 +10,21 @@ import { FiX, FiLink } from 'react-icons/fi';
 // 作品詳細モーダルコンポーネント（ポップアップで作品詳細を表示）
 // work: 表示する作品データ、onClose: モーダルを閉じる関数
 const WorkModal = ({ work, onClose }) => {
+  // オーバーレイクリック時の処理（モーダル内容をクリックした場合は閉じない）
+  const handleOverlayClick = (e) => {
+    // クリックされた要素がオーバーレイ自身の場合のみ閉じる
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   // JSXを返す（モーダルのUI構造）
   return (
     // モーダルの背景オーバーレイ（画面全体を覆う半透明の黒い背景）
-    <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 p-4">
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 p-4"
+      onClick={handleOverlayClick}
+    >
       {/* モーダルのメインコンテンツ */}
       <div className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto relative">
         
@@ -62,7 +73,7 @@ const WorkModal = ({ work, onClose }) => {
             
             {/* 技術スタック */}
             <div>
-              <h4 className="font-bold">技術スタック</h4>
+              <h4 className="font-bold">主な技術スタック</h4>
               <p className="text-text-sub">{work.stack}</p>
             </div>
             
