@@ -2,19 +2,48 @@
 // プロフィール（経歴）のデータ配列
 const timelineData = [
   {
-    year: '2005',                                         // 年度
-    event: '爆誕',                                // 出来事のタイトル
-    description: 'お米の美味しい県に生まれる'   // 詳細説明
+    year: '2005',
+    events: [
+      {
+        event: '爆誕',
+        description: '自然豊かで、お米の美味しい県に生まれる。'
+      }
+    ]
   },
   {
-    year: '2019',
-    event: '〇〇株式会社入社',
-    description: 'Web制作会社でフロントエンドエンジニアとしてキャリアをスタート。'
+    year: '保育園時代',
+    events: [
+      {
+        event: '当時の夢は大工だった',
+        description: '祖父が大工だった影響で、当時は大工になるといっていました。'
+      },
+
+      {
+        event: 'はじめてのゲーム',
+        description: '私が初めてゲームに触れたのは、父母がpcでやっていたブラウザ版「ピグライフ」というアメーバピグ内で提供されていた農園シミュレーションゲームでした。\n これをきっかけに保育園時代は、DSのゲームやスマホゲームにものめりこんでいました。'
+      }
+    ]
   },
   {
-    year: '現在',
-    event: 'フリーランスとして活動',
-    description: 'Webサイト制作やアプリ開発を中心に活動中。'
+    year: '小学校時代',
+    events: [
+      {
+        event: '好きな科目は「社会」',
+        description: '社会は歴史や地理など全体的に好きでした。積極的に発言していたことも覚えています。このが高校の文理選択を苦しめることになるのはまだ先のお話'
+      },
+      {
+        event: 'シミュレーション活動',
+        description: ''
+      },
+      {
+        event: 'パソコンに触れる',
+        description: ''
+      },
+      {
+        event: '夢は「ゲームクリエイター」へ',
+        description: ''
+      }
+    ]
   },
 ];
 
@@ -28,39 +57,39 @@ const Profile = () => {
       <h2 className="text-6xl font-bold text-center mb-12">Profile</h2>
 
       <p className="mt-2 mb-8 text-lg text-center text-text-sub"
-      >私がエンジニアの道を志すまでの道のり</p>
+      >私が現在の夢を志すまでの道のり</p>
 
       {/* タイムライン全体のコンテナ */}
-      <div className="relative max-w-2xl mx-auto">
-        {/* 中央の縦線（タイムラインの軸） */}
-        <div className="absolute left-1/2 w-0.5 h-full bg-primary -translate-x-1/2"></div>
-
+      <div className="max-w-5xl mx-auto relative">
+        {/* 全体を通る縦線 - 年表示ボックスの中央を通る */}
+        <div className="absolute left-1/2 top-0 w-0.5 h-full bg-primary transform -translate-x-1/2" style={{left: '56px'}}></div>
+        
         {/* timelineData配列の各項目をループで表示 */}
         {timelineData.map((item, index) => (
           // 各タイムライン項目
-          <div key={index} className="relative mb-8 flex justify-between items-center w-full">
-
-            {/* 左右交互配置のための条件分岐 */}
-            {/* 偶数番目（0,2,4...）は左側、奇数番目（1,3,5...）は右側に配置 */}
-            <div className={`w-5/12 ${index % 2 === 0 ? 'order-1' : 'order-3'}`}>
-              {/* イベント内容のカード */}
-              <div className={`p-4 rounded-lg shadow-md bg-white ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                {/* イベントタイトル */}
-                <h3 className="font-bold text-lg">{item.event}</h3>
-                {/* イベント詳細説明 */}
-                <p className="text-sm text-text-sub">{item.description}</p>
-              </div>
-            </div>
-
-            {/* 中央の年度表示部分 */}
-            <div className="z-10 order-2">
-              <div className="w-24 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+          <div key={index} className="flex items-start mb-12 last:mb-0 relative">
+            {/* 左側：年表部分 */}
+            <div className="w-28 flex-shrink-5 text-center relative z-10">
+              <div className="inline-block px-4 py-2 bg-primary text-white font-bold text-sm rounded-lg">
                 {item.year}
               </div>
             </div>
 
-            {/* 反対側のスペーサー（レイアウト調整用） */}
-            <div className="w-5/12 order-1"></div>
+            {/* 右側：内容部分 */}
+            <div className="flex-1 pl-8">
+              {/* イベント内容のカード */}
+              <div className="bg-white rounded-lg shadow-md p-6">
+                {/* 複数イベントの表示 */}
+                {item.events.map((event, eventIndex) => (
+                  <div key={eventIndex} className={eventIndex > 0 ? 'mt-6 pt-6 border-t border-gray-200' : ''}>
+                    {/* イベントタイトル */}
+                    <h3 className="font-bold text-lg text-gray-800 mb-2">{event.event}</h3>
+                    {/* イベント詳細説明 */}
+                    <p className="text-sm text-text-sub leading-relaxed whitespace-pre-line">{event.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         ))}
       </div>
