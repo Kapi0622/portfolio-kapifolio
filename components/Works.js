@@ -4,6 +4,7 @@ import { useState } from 'react';
 import WorkModal from './WorkModal';
 import { motion } from 'framer-motion';
 import { useTheme } from '../src/contexts/ThemeContext';
+import Image from 'next/image';
 
 const worksData = [
   {
@@ -208,7 +209,7 @@ const Works = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          // 私が携わったプロダクト一覧
+          {"// 私が携わったプロダクト一覧"}
         </motion.p>
         
         <motion.div
@@ -252,13 +253,15 @@ const Works = () => {
               </div>
               
               {/* プロジェクト画像 */}
-              <div className={`w-full aspect-square overflow-hidden transition-colors duration-300 ${
+              <div className={`w-full aspect-square overflow-hidden transition-colors duration-300 relative ${
                 isDark ? 'bg-bg-secondary' : 'bg-light-bg-secondary'
               }`}>
-                <img
+                <Image
                   src={work.mainImage}
                   alt={work.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               

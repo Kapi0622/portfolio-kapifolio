@@ -8,6 +8,8 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { FiX, FiLink } from 'react-icons/fi';
 // テーマコンテキストをインポート
 import { useTheme } from '../src/contexts/ThemeContext';
+// Next.js Imageをインポート
+import Image from 'next/image';
 
 // 作品詳細モーダルコンポーネント（ポップアップで作品詳細を表示）
 // work: 表示する作品データ、onClose: モーダルを閉じる関数
@@ -221,13 +223,15 @@ const WorkModal = ({ work, onClose }) => {
                       >
                         {work.images.map((image, index) => (
                           <SwiperSlide key={index}>
-                            <div className="relative">
-                              <img
+                            <div className="relative w-full" style={{ height: '320px' }}>
+                              <Image
                                 src={image}
                                 alt={`${work.title} screen shot ${index + 1}`}
-                                className={`w-full h-auto object-contain max-h-80 rounded border transition-colors duration-300 ${
+                                fill
+                                className={`object-contain rounded border transition-colors duration-300 ${
                                   isDark ? 'border-code-border' : 'border-light-code-border'
                                 }`}
+                                sizes="(max-width: 768px) 100vw, 80vw"
                               />
                               <div className={`absolute bottom-2 right-2 text-xs px-2 py-1 rounded font-mono transition-colors duration-300 ${
                                 isDark 

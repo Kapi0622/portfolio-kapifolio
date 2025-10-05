@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const PartyEffect = ({ isActive, onStop }) => {
   const [items, setItems] = useState([]);
   const [effectType, setEffectType] = useState(null);
   const containerRef = useRef(null);
 
-  // 利用可能な画像リスト
-  const images = [
+  // 利用可能な画像リスト（useMemoで固定）
+  const images = useMemo(() => [
     '/images/resourses/cpp.png',
     '/images/resourses/csharp.png',
     '/images/resourses/github.png',
@@ -27,7 +28,7 @@ const PartyEffect = ({ isActive, onStop }) => {
     '/images/resourses/rails.png',
     '/images/resourses/docker.png',
     '/images/resourses/nextjs.png',
-  ];
+  ], []);
 
   // ランダムなエフェクトタイプを選択
   useEffect(() => {
@@ -61,7 +62,7 @@ const PartyEffect = ({ isActive, onStop }) => {
     }, 300);
 
     return () => clearInterval(interval);
-  }, [isActive, effectType]);
+  }, [isActive, effectType, images]);
 
   // ビリヤードエフェクト
   useEffect(() => {
@@ -113,7 +114,7 @@ const PartyEffect = ({ isActive, onStop }) => {
 
     animationFrameId = requestAnimationFrame(updatePositions);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isActive, effectType]);
+  }, [isActive, effectType, images]);
 
   if (!isActive) return null;
 
@@ -149,10 +150,13 @@ const PartyEffect = ({ isActive, onStop }) => {
                 height: '50px',
               }}
             >
-              <img
+              <Image
                 src={item.image}
                 alt="party item"
-                className="w-full h-full object-contain drop-shadow-lg"
+                width={50}
+                height={50}
+                className="object-contain drop-shadow-lg"
+                unoptimized
               />
             </motion.div>
           ))}
@@ -170,10 +174,13 @@ const PartyEffect = ({ isActive, onStop }) => {
                 rotate: item.rotation,
               }}
             >
-              <img
+              <Image
                 src={item.image}
                 alt="party item"
-                className="w-full h-full object-contain drop-shadow-2xl"
+                width={60}
+                height={60}
+                className="object-contain drop-shadow-2xl"
+                unoptimized
               />
             </motion.div>
           ))}
