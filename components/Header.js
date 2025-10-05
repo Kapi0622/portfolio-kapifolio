@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../src/contexts/ThemeContext';
 
 // ヘッダーコンポーネントの定義（サイト上部のナビゲーション部分）
-const Header = () => {
+const Header = ({ isPartyActive, setIsPartyActive }) => {
   // テーマコンテキストの取得
   const { isDark, toggleTheme } = useTheme();
   
@@ -98,7 +98,7 @@ const Header = () => {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       {/* 最大幅を設定し、中央寄せにするコンテナ */}
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-5xl mx-auto px-4">
         {/* フレックスボックスでロゴとメニューを横並びに配置 */}
         <div className="flex items-center justify-between h-16">
             {/* ロゴ部分 */}
@@ -177,6 +177,39 @@ const Header = () => {
                 {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
               </motion.div>
             </motion.button>
+            
+            {/* パーティモードボタン */}
+            <motion.button
+              onClick={() => setIsPartyActive(!isPartyActive)}
+              className={`p-2 rounded-lg transition-all duration-300 group border ${
+                isPartyActive
+                  ? isDark
+                    ? 'bg-accent border-accent'
+                    : 'bg-light-accent border-light-accent'
+                  : isDark 
+                    ? 'hover:bg-bg-tertiary border-code-border' 
+                    : 'hover:bg-light-bg-tertiary border-light-code-border'
+              }`}
+              whileHover={{ 
+                scale: 1.1, 
+                borderColor: isPartyActive ? "#f472b6" : (isDark ? "#10b981" : "#0ea5e9"),
+              }}
+              whileTap={{ scale: 0.9, rotate: 15 }}
+              title={isPartyActive ? 'パーティモードを停止' : 'パーティモードを開始'}
+            >
+              <motion.div
+                animate={{ 
+                  rotate: isPartyActive ? [0, 10, -10, 10, 0] : 0,
+                }}
+                transition={{ 
+                  duration: 0.5,
+                  repeat: isPartyActive ? Infinity : 0,
+                  repeatDelay: 0.2
+                }}
+              >
+                🎉
+              </motion.div>
+            </motion.button>
           </div>
           
           {/* モバイル用ハンバーガーメニューボタンとテーマ切り替え（画面サイズがmd未満の時に表示） */}
@@ -203,6 +236,38 @@ const Header = () => {
                 transition={{ duration: 0.3 }}
               >
                 {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
+              </motion.div>
+            </motion.button>
+            
+            {/* モバイル用パーティモードボタン */}
+            <motion.button
+              onClick={() => setIsPartyActive(!isPartyActive)}
+              className={`p-2 rounded-lg transition-all duration-300 border ${
+                isPartyActive
+                  ? isDark
+                    ? 'bg-accent border-accent'
+                    : 'bg-light-accent border-light-accent'
+                  : isDark 
+                    ? 'hover:bg-bg-tertiary border-code-border' 
+                    : 'hover:bg-light-bg-tertiary border-light-code-border'
+              }`}
+              whileHover={{ 
+                scale: 1.1, 
+                borderColor: isPartyActive ? "#f472b6" : (isDark ? "#10b981" : "#0ea5e9"),
+              }}
+              whileTap={{ scale: 0.9, rotate: 15 }}
+            >
+              <motion.div
+                animate={{ 
+                  rotate: isPartyActive ? [0, 10, -10, 10, 0] : 0,
+                }}
+                transition={{ 
+                  duration: 0.5,
+                  repeat: isPartyActive ? Infinity : 0,
+                  repeatDelay: 0.2
+                }}
+              >
+                🎉
               </motion.div>
             </motion.button>
             

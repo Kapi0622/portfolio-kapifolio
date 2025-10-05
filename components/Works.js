@@ -9,8 +9,8 @@ const worksData = [
   {
     id: 1,
     title: 'Kapifolio',
-    mainImage: '/images/work/kapifolio/kapifolio-image1.png',
-    images: ['/images/work/kapifolio/kapifolio-image1.png', '/images/work/kapifolio/kapifolio-image2.png', '/images/profile.jpg'],
+    mainImage: '/images/work/kapifolio/kapifolio.png',
+    images: ['/images/work/kapifolio/kapifolio-image1.png', '/images/work/kapifolio/kapifolio-image2.png', '/images/work/kapifolio/kapifolio-image3.png'],
     description: '自身のスキルと制作実績を紹介するために作成したポートフォリオサイトです。',
     links: [
       {
