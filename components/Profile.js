@@ -101,7 +101,7 @@ const Profile = () => {
         <p className={`mt-2 mb-12 text-xl text-center font-mono ${
           isDark ? 'text-text-sub' : 'text-light-text-sub'
         }`}>
-          <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>//</span> 私の成長ログ
+          <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"//"}</span> 私の成長ログ
         </p>
 
       {/* タイムライン全体のコンテナ */}

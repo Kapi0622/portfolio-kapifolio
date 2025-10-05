@@ -18,7 +18,7 @@ const Footer = () => {
           <span className={isDark ? 'text-accent' : 'text-light-accent'}>"© {new Date().getFullYear()} Kapifolio"</span>
         </div>
         <p className={`text-sm ${isDark ? 'text-text-muted' : 'text-light-text-muted'}`}>
-          <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>//</span> Built with React, Next.js & ❤️
+          <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"//"}</span> Built with React, Next.js & ❤️
         </p>
         <p className={`text-xs mt-1 ${isDark ? 'text-text-muted' : 'text-light-text-muted'}`}>
           All Rights Reserved.

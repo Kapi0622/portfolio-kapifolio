@@ -33,7 +33,7 @@ export default function Home() {
               <span className={isDark ? 'text-accent' : 'text-light-accent'}>{'>'}</span> Kapi - Game & Web Developer
             </p>
             <p className="text-lg">
-              <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>//</span> Building digital experiences with code
+              <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"//"}</span> Building digital experiences with code
             </p>
           </div>
         </section>
@@ -49,7 +49,7 @@ export default function Home() {
       <Footer />
       
       {/* パーティエフェクト - 画面全体に表示 */}
-      <PartyEffect isActive={isPartyActive} onStop={() => setIsPartyActive(false)} />
+      <PartyEffect isActive={isPartyActive} />
     </ThemeWrapper>
   );
 }

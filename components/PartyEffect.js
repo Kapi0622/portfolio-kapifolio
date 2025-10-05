@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
-const PartyEffect = ({ isActive, onStop }) => {
+const PartyEffect = ({ isActive }) => {
   const [items, setItems] = useState([]);
   const [effectType, setEffectType] = useState(null);
   const containerRef = useRef(null);

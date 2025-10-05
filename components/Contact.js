@@ -21,13 +21,11 @@ const Contact = () => {
           <span className="font-mono">./contact</span>
           <span className={isDark ? 'text-accent' : 'text-light-accent'}> --interactive</span>
         </h2>
-        <p className={`mt-2 mb-12 text-xl text-center font-mono ${
-          isDark ? 'text-text-sub' : 'text-light-text-sub'
-        }`}>
-          // お気軽にご連絡ください
-        </p>
-        
-        {/* ターミナルウィンドウ風の背景 */}
+      <p className={`mt-2 mb-12 text-xl text-center font-mono ${
+        isDark ? 'text-text-sub' : 'text-light-text-sub'
+      }`}>
+        {"// お気軽にご連絡ください"}
+      </p>        {/* ターミナルウィンドウ風の背景 */}
         <div className={`border rounded-lg overflow-hidden shadow-2xl backdrop-blur-sm transition-colors duration-300 ${
           isDark 
             ? 'bg-code-bg border-code-border' 

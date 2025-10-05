@@ -1,6 +1,7 @@
 // Font Awesome 6のアイコンライブラリから必要なSNSアイコンをインポート
 import { FaXTwitter, FaGithub, FaInstagram } from 'react-icons/fa6';
 import { useTheme } from '../src/contexts/ThemeContext';
+import Image from 'next/image';
 
 // 自己紹介セクションのコンポーネント
 const AboutMe = () => {
@@ -27,7 +28,7 @@ const AboutMe = () => {
         <p className={`mt-2 mb-12 text-xl text-center font-mono ${
           isDark ? 'text-text-sub' : 'text-light-text-sub'
         }`}>
-          // 駆け出しエンジニアの自己紹介
+          {"// 駆け出しエンジニアの自己紹介"}
         </p>
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -56,11 +57,11 @@ const AboutMe = () => {
               <p className={`text-lg leading-relaxed font-mono transition-colors duration-300 ${
                 isDark ? 'text-text-sub' : 'text-light-text-sub'
               }`}>
-                <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>// 大学2年生の駆け出しエンジニア</span><br />
+                <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"// 大学2年生の駆け出しエンジニア"}</span><br />
                 <span className={isDark ? 'text-accent' : 'text-light-accent'}>motto:</span> <span className={isDark ? 'text-text-main' : 'text-light-text-main'}>"技術とアイデアで、日常をエンターテインメントに💃"</span><br />
                 <span className={isDark ? 'text-accent' : 'text-light-accent'}>focus:</span> <span className={isDark ? 'text-text-main' : 'text-light-text-main'}>["ゲーム開発", "Web開発", "UX重視"]</span><br />
                 <span className={isDark ? 'text-accent' : 'text-light-accent'}>goal:</span> <span className={isDark ? 'text-text-main' : 'text-light-text-main'}>"ゲーム業界のエンジニア"</span><br />
-                <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>// よろしくお願いします！</span>
+                <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"// よろしくお願いします！"}</span>
               </p>
             </div>
             
@@ -223,7 +224,7 @@ const AboutMe = () => {
                 ? 'text-text-sub border-code-border' 
                 : 'text-light-text-sub border-light-code-border'
             }`}>
-              <p className={isDark ? 'text-accent' : 'text-light-accent'}>// エンジニアとして成長中...</p>
+              <p className={isDark ? 'text-accent' : 'text-light-accent'}>{"// エンジニアとして成長中..."}</p>
               <p className={`font-mono transition-colors duration-300 ${
                 isDark ? 'text-text-sub' : 'text-light-text-sub'
               }`}>
@@ -236,11 +237,13 @@ const AboutMe = () => {
           </div>
           
           <div className="flex justify-center">
-            <div className="relative">
-              <img 
+            <div className="relative w-160 h-160">
+              <Image 
                 src="/images/profile.jpg"
                 alt="プロフィール画像"
-                className={`w-160 h-160 object-cover rounded-lg shadow-2xl border-4 backdrop-blur-sm transition-colors duration-300 ${
+                width={640}
+                height={640}
+                className={`object-cover rounded-lg shadow-2xl border-4 backdrop-blur-sm transition-colors duration-300 ${
                   isDark 
                     ? 'border-code-border hover:border-primary' 
                     : 'border-light-code-border hover:border-light-primary'

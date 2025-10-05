@@ -15,12 +15,12 @@ const AboutSite = () => {
         <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-2 font-mono ${
           isDark ? 'text-primary' : 'text-light-primary'
         }`}>
-          <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>/*</span> About this site <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>*/</span>
+          <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"/*"}</span> About this site <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"*/"}</span>
         </h2>
         <p className={`mt-2 mb-12 text-xl text-center font-mono ${
           isDark ? 'text-text-sub' : 'text-light-text-sub'
         }`}>
-          // このポートフォリオサイトについて
+          {"// このポートフォリオサイトについて"}
         </p>
         
         <div className={`w-full py-6 border rounded-lg transition-colors duration-300 ${
@@ -40,7 +40,7 @@ const AboutSite = () => {
           </div>
           
           <div className="p-6 font-mono text-lg">
-            <p className={`mb-2 ${isDark ? 'text-terminal-green' : 'text-light-terminal-green'}`}>/**</p>
+            <p className={`mb-2 ${isDark ? 'text-terminal-green' : 'text-light-terminal-green'}`}>{"/**"}</p>
             <p className={`mb-2 ${isDark ? 'text-terminal-green' : 'text-light-terminal-green'}`}> * Portfolio Site Overview</p>
             <p className={`mb-4 ${isDark ? 'text-terminal-green' : 'text-light-terminal-green'}`}> */</p>
             

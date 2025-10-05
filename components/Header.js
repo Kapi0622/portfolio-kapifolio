@@ -72,17 +72,6 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
     }
   };
 
-  const linkVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: (i) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5
-      }
-    })
-  };
   // JSXを返す（HTMLのような記法でUI構造を定義）
   return (
     <motion.header 
@@ -332,7 +321,7 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
             {/* メニュー内のパディング調整 */}
             <div className="px-6">
               {/* モバイル用ナビゲーションリンク（縦並び） */}
-              <nav className="flex flex-col space-y-4">                {navLinks.map((link, index) => (
+              <nav className="flex flex-col space-y-4">                {navLinks.map((link) => (
                   <motion.a 
                     key={link.name} 
                     href={link.href} 
@@ -341,8 +330,7 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
                         ? 'text-text-sub hover:text-primary' 
                         : 'text-light-text-sub hover:text-light-primary'
                     }`}
-                    onClick={() => setIsOpen(false)} // リンククリック時にメニューを閉じる                    custom={index}
-                    variants={linkVariants}
+                    onClick={() => setIsOpen(false)} // リンククリック時にメニューを閉じる
                     initial="hidden"
                     animate="visible"
                     whileHover={{ 
