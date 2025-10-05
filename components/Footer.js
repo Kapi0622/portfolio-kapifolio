@@ -1,14 +1,29 @@
-// フッターコンポーネント（サイト下部に表示される著作権表示）
+"use client";
+
+import { useTheme } from '../src/contexts/ThemeContext';
+
 const Footer = () => {
-  // JSXを返す（フッターのUI構造）
+  const { isDark } = useTheme();
+  
   return (
-    // フッター要素（灰色の背景、白いテキスト、中央寄せ）
-    <footer className="bg-gray-800 text-white text-center p-4">
-      {/* 著作権表示（現在の年を自動取得） */}
-      <p>
-        © {new Date().getFullYear()} Kapifolio. All Rights Reserved.
-        {/* new Date().getFullYear() で現在の年を取得（例：2025） */}
-      </p>
+    <footer className={`border-t text-center p-6 font-mono transition-colors duration-300 ${
+      isDark 
+        ? 'bg-bg-primary border-code-border text-text-main' 
+        : 'bg-light-bg-primary border-light-code-border text-light-text-main'
+    }`}>
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center justify-center space-x-2 mb-2">
+          <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>$</span>
+          <span className={isDark ? 'text-text-sub' : 'text-light-text-sub'}>echo</span>
+          <span className={isDark ? 'text-accent' : 'text-light-accent'}>"© {new Date().getFullYear()} Kapifolio"</span>
+        </div>
+        <p className={`text-sm ${isDark ? 'text-text-muted' : 'text-light-text-muted'}`}>
+          <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>//</span> Built with React, Next.js & ❤️
+        </p>
+        <p className={`text-xs mt-1 ${isDark ? 'text-text-muted' : 'text-light-text-muted'}`}>
+          All Rights Reserved.
+        </p>
+      </div>
     </footer>
   );
 };
