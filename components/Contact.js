@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTheme } from '../src/contexts/ThemeContext';
 

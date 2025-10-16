@@ -178,14 +178,14 @@ const Works = () => {
   return (
     <motion.section
       id="works"
-      className={`py-40 transition-colors duration-300 ${
+      className={`py-24 sm:py-28 md:py-32 lg:py-40 transition-colors duration-300 ${
         isDark 
           ? 'bg-bg-primary text-text-main' 
           : 'bg-light-bg-primary text-light-text-main'
       }`}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: false, amount: 0.1 }}
       variants={containerVariants}
     >
       <div className="max-w-6xl mx-auto px-6">
@@ -201,7 +201,7 @@ const Works = () => {
           <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>$</span> ls -la ~/projects
         </motion.h2>
         <motion.p
-          className={`mt-2 mb-12 text-xl text-center font-mono ${
+          className={`mt-2 mb-10 text-base sm:mb-12 sm:text-lg text-center font-mono ${
             isDark ? 'text-text-sub' : 'text-light-text-sub'
           }`}
           initial={{ opacity: 0, y: -20 }}
@@ -213,7 +213,7 @@ const Works = () => {
         </motion.p>
         
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           variants={containerVariants}
         >
           {worksData.map((work) => (
@@ -253,7 +253,7 @@ const Works = () => {
               </div>
               
               {/* プロジェクト画像 */}
-              <div className={`w-full aspect-square overflow-hidden transition-colors duration-300 relative ${
+              <div className={`relative w-full overflow-hidden transition-colors duration-300 h-56 sm:h-auto aspect-square ${
                 isDark ? 'bg-bg-secondary' : 'bg-light-bg-secondary'
               }`}>
                 <Image
@@ -261,7 +261,7 @@ const Works = () => {
                   alt={work.title}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
               
@@ -270,20 +270,20 @@ const Works = () => {
                 isDark ? 'bg-code-bg' : 'bg-light-code-bg'
               }`}>
                 <div className="flex items-center space-x-2 mb-2">
-                  <span className={`font-mono text-sm ${
+                  <span className={`font-mono text-xs sm:text-sm ${
                     isDark ? 'text-terminal-green' : 'text-light-terminal-green'
                   }`}>➜</span>
-                  <h3 className={`font-bold text-xl font-mono ${
+                  <h3 className={`font-bold text-lg sm:text-xl font-mono ${
                     isDark ? 'text-primary' : 'text-light-primary'
                   }`}>{work.title}</h3>
                 </div>
                 
                 {/* 技術スタック - バッジ風 */}
-                <div className="flex flex-wrap gap-1 mb-3">
+                <div className="flex flex-wrap gap-1.5 sm:gap-1 mb-3">
                   {work.stack.split(', ').slice(0, 3).map((tech, index) => (
                     <span 
                       key={index} 
-                      className={`px-2 py-1 text-sm font-mono rounded border transition-colors duration-300 ${
+                      className={`px-2 py-0.5 text-xs sm:text-sm font-mono rounded border transition-colors duration-300 ${
                         isDark 
                           ? 'bg-bg-tertiary text-text-sub border-code-border' 
                           : 'bg-light-bg-tertiary text-light-text-sub border-light-code-border'
@@ -293,7 +293,7 @@ const Works = () => {
                     </span>
                   ))}
                   {work.stack.split(', ').length > 3 && (
-                    <span className={`px-2 py-1 text-xs font-mono rounded border transition-colors duration-300 ${
+                    <span className={`px-2 py-0.5 text-[10px] sm:text-xs font-mono rounded border transition-colors duration-300 ${
                       isDark 
                         ? 'bg-bg-tertiary text-accent border-code-border' 
                         : 'bg-light-bg-tertiary text-light-accent border-light-code-border'
@@ -305,10 +305,10 @@ const Works = () => {
                 
                 {/* 役割表示 */}
                 <div className="flex items-center space-x-2 mb-1">
-                  <span className={`font-mono text-xs ${
+                  <span className={`font-mono text-[11px] sm:text-xs ${
                     isDark ? 'text-text-muted' : 'text-light-text-muted'
                   }`}>role:</span>
-                  <span className={`text-xs ${
+                  <span className={`text-[11px] sm:text-xs ${
                     isDark ? 'text-text-sub' : 'text-light-text-sub'
                   }`}>{work.role}</span>
                 </div>
@@ -316,10 +316,10 @@ const Works = () => {
                 {/* 開発タイプ表示 */}
                 {work.developmentType && (
                   <div className="flex items-center space-x-2">
-                    <span className={`font-mono text-xs ${
+                    <span className={`font-mono text-[11px] sm:text-xs ${
                       isDark ? 'text-text-muted' : 'text-light-text-muted'
                     }`}>type:</span>
-                    <span className={`text-xs px-2 py-1 rounded font-mono ${
+                    <span className={`text-[10px] sm:text-xs px-1.5 py-0.5 rounded font-mono ${
                       work.developmentType === '個人開発' 
                         ? (isDark ? 'bg-secondary/20 text-secondary border border-secondary/30' : 'bg-light-secondary/20 text-light-secondary border border-light-secondary/30')
                         : (isDark ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-light-primary/20 text-light-primary border border-light-primary/30')

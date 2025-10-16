@@ -27,20 +27,20 @@ const WorkModal = ({ work, onClose }) => {
   return (
     // モーダルの背景オーバーレイ（画面全体を覆う半透明の背景）
     <div
-      className={`fixed inset-0 flex justify-center items-center z-50 p-4 transition-colors duration-300 ${
+      className={`fixed inset-0 flex justify-center items-center z-50 p-2 sm:p-4 transition-colors duration-300 ${
         isDark ? 'bg-black bg-opacity-80' : 'bg-gray-900 bg-opacity-50'
       }`}
       onClick={handleOverlayClick}
     >
       {/* エディタ風モーダルのメインコンテンツ */}
-      <div className={`border rounded-lg max-w-6xl w-full max-h-[90vh] overflow-hidden relative shadow-2xl transition-colors duration-300 ${
+      <div className={`border rounded-lg max-w-6xl w-full max-h-[92vh] sm:max-h-[90vh] overflow-hidden relative shadow-2xl transition-colors duration-300 ${
         isDark 
           ? 'bg-code-bg border-code-border' 
           : 'bg-light-code-bg border-light-code-border'
       }`}>
 
         {/* VS Code風のタイトルバー */}
-        <div className={`px-4 py-3 flex items-center justify-between border-b transition-colors duration-300 ${
+        <div className={`px-3 py-2 sm:px-4 sm:py-3 flex items-center justify-between border-b transition-colors duration-300 ${
           isDark 
             ? 'bg-bg-tertiary border-code-border' 
             : 'bg-light-bg-tertiary border-light-code-border'
@@ -70,7 +70,7 @@ const WorkModal = ({ work, onClose }) => {
         </div>
 
         {/* エディタのタブエリア */}
-        <div className={`px-4 py-2 border-b transition-colors duration-300 ${
+        <div className={`px-3 py-2 sm:px-4 border-b transition-colors duration-300 ${
           isDark 
             ? 'bg-bg-secondary border-code-border' 
             : 'bg-light-bg-secondary border-light-code-border'
@@ -100,9 +100,9 @@ const WorkModal = ({ work, onClose }) => {
           </div>
         </div>
 
-        <div className="flex h-full max-h-[calc(90vh-120px)]">
+  <div className="flex flex-col sm:flex-row h-full max-h-[calc(92vh-120px)] sm:max-h-[calc(90vh-120px)]">
           {/* サイドバー（ファイルエクスプローラ風） */}
-          <div className={`w-64 border-r p-4 overflow-y-auto transition-colors duration-300 ${
+          <div className={`hidden sm:block w-64 border-r p-4 overflow-y-auto transition-colors duration-300 ${
             isDark 
               ? 'bg-bg-secondary border-code-border' 
               : 'bg-light-bg-secondary border-light-code-border'
@@ -181,7 +181,7 @@ const WorkModal = ({ work, onClose }) => {
           {/* メインコンテンツエリア */}
           <div className="flex-1 overflow-y-auto">
             {/* README.md風の内容表示 */}
-            <div className="p-6 font-mono text-sm">
+            <div className="p-4 sm:p-6 font-mono text-sm">
               <div className="space-y-6">
                 {/* マークダウン風ヘッダー */}
                 <div className={`border-b pb-4 transition-colors duration-300 ${
@@ -223,7 +223,7 @@ const WorkModal = ({ work, onClose }) => {
                       >
                         {work.images.map((image, index) => (
                           <SwiperSlide key={index}>
-                            <div className="relative w-full" style={{ height: '320px' }}>
+                            <div className="relative w-full h-56 sm:h-80">
                               <Image
                                 src={image}
                                 alt={`${work.title} screen shot ${index + 1}`}
