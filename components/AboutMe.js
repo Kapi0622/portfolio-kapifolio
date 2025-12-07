@@ -6,7 +6,6 @@ import Image from 'next/image';
 // 自己紹介セクションのコンポーネント
 const AboutMe = () => {
   const { isDark } = useTheme();
-  // ★★★ ご自身のSNSリンクに書き換えてください ★★★
   // SNSリンクのデータをオブジェクトで管理
   const snsLinks = {
     x: 'https://x.com/kapi_0622',        // X（旧Twitter）のアカウントURL
@@ -57,10 +56,10 @@ const AboutMe = () => {
               <p className={`text-lg leading-relaxed font-mono transition-colors duration-300 ${
                 isDark ? 'text-text-sub' : 'text-light-text-sub'
               }`}>
-                <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"// 大学2年生の駆け出しエンジニア"}</span><br />
-                <span className={isDark ? 'text-accent' : 'text-light-accent'}>motto:</span> <span className={isDark ? 'text-text-main' : 'text-light-text-main'}>"技術とアイデアで、日常をエンターテインメントに💃"</span><br />
-                <span className={isDark ? 'text-accent' : 'text-light-accent'}>focus:</span> <span className={isDark ? 'text-text-main' : 'text-light-text-main'}>["ゲーム開発", "Web開発", "UX重視"]</span><br />
-                <span className={isDark ? 'text-accent' : 'text-light-accent'}>goal:</span> <span className={isDark ? 'text-text-main' : 'text-light-text-main'}>"ゲーム業界のエンジニア"</span><br />
+                <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"// 大学2年生のエンジニア"}</span><br />
+                <span className={isDark ? 'text-accent' : 'text-light-accent'}>motto:</span> <span className={isDark ? 'text-text-main' : 'text-light-text-main'}>"技術とアイデアで、日常に『彩り』と『活力』を生み出す"</span><br />
+                <span className={isDark ? 'text-accent' : 'text-light-accent'}>focus:</span> <span className={isDark ? 'text-text-main' : 'text-light-text-main'}>["ゲーム開発", "Web開発"]</span><br />
+                <span className={isDark ? 'text-accent' : 'text-light-accent'}>goal:</span> <span className={isDark ? 'text-text-main' : 'text-light-text-main'}>"日常がもっと楽しく、遊びにあふれた世界を創る"</span><br />
                 <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>{"// よろしくお願いします！"}</span>
               </p>
             </div>
