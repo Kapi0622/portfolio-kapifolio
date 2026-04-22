@@ -1,8 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ===== HUD utilities ===== */
+.hud-scanlines::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.04) 0px,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 60;
+  mix-blend-mode: overlay;
+}
+html.dark .hud-scanlines::before {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(34, 211, 238, 0.035) 0px,
+    rgba(34, 211, 238, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.hud-glow-text {
+  text-shadow: 0 0 10px currentColor, 0 0 22px currentColor;
+}
+html.dark .hud-glow-text { text-shadow: 0 0 8px rgba(34,211,238,0.6), 0 0 24px rgba(34,211,238,0.35); }
+
+.hud-grid-bg {
+  background-image:
+    linear-gradient(rgba(34,211,238,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,211,238,0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+html:not(.dark) .hud-grid-bg {
+  background-image:
+    linear-gradient(rgba(3,105,161,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(3,105,161,0.08) 1px, transparent 1px);
+}
+
+.hud-corner-frame {
+  position: relative;
+}
+.hud-corner-frame::before,
+.hud-corner-frame::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid currentColor;
+  pointer-events: none;
+}
+.hud-corner-frame::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.hud-corner-frame::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* Markdown (react-markdown) 本文スタイル */
 .prose-custom p { margin: 0 0 1em; }

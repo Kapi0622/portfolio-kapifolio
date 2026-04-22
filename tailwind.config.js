@@ -10,47 +10,56 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // ===== Dark Mode: Gameplay HUD (落ち着き + 技術的集中感) =====
-        'primary': '#22D3EE',        // cyan-400 / HUDグロー
-        'secondary': '#8B5CF6',      // violet-500
-        'accent': '#F472B6',         // pink-400 / 抑えたハイライト
+        // ===== Dark Mode: AAA HUD (signature) =====
+        'primary': '#22D3EE',        // HUD cyan
+        'secondary': '#E879F9',      // magenta accent
+        'accent': '#FCD34D',          // rarity / warning yellow
 
-        'text-main': '#E2E8F0',      // slate-200
-        'text-sub': '#94A3B8',       // slate-400
-        'text-muted': '#64748B',     // slate-500
+        'text-main': '#E5EEF7',
+        'text-sub': '#94A3B8',
+        'text-muted': '#475569',
 
-        'bg-primary': '#0B0F1A',     // deep navy (HUD背景)
-        'bg-secondary': '#111827',   // gray-900
-        'bg-tertiary': '#1F2937',    // gray-800 (カード背景)
+        'bg-primary': '#05070D',     // deep briefing navy
+        'bg-secondary': '#0B111E',
+        'bg-tertiary': '#121A2A',
 
-        'code-bg': '#0F172A',
-        'code-border': '#334155',    // slate-700
-        'terminal-green': '#22D3EE', // 旧名は primary と同値に集約
+        'code-bg': '#0A0F1A',
+        'code-border': '#1E293B',
+        'terminal-green': '#22D3EE',
 
-        // ===== Light Mode: Game Title Screen (ポップ + エネルギッシュ) =====
-        'light-primary': '#F97316',     // orange-500
-        'light-secondary': '#EC4899',   // pink-500
-        'light-accent': '#7C3AED',      // violet-600
+        // ===== Light Mode: Daylight Briefing =====
+        'light-primary': '#0369A1',    // sky-700
+        'light-secondary': '#BE185D',  // pink-700
+        'light-accent': '#B45309',     // amber-700
 
-        'light-text-main': '#1C1917',   // stone-900
-        'light-text-sub': '#44403C',    // stone-700
-        'light-text-muted': '#78716C',  // stone-500
+        'light-text-main': '#0F172A',
+        'light-text-sub': '#334155',
+        'light-text-muted': '#64748B',
 
-        'light-bg-primary': '#FFF7ED',  // orange-50 (クリーム地)
-        'light-bg-secondary': '#FFEDD5',// orange-100
-        'light-bg-tertiary': '#FED7AA', // orange-200 (カード背景)
+        'light-bg-primary': '#F4EEE2',
+        'light-bg-secondary': '#EFE6D4',
+        'light-bg-tertiary': '#E3D5B8',
 
-        'light-code-bg': '#FFFBF5',
-        'light-code-border': '#FDBA74', // orange-300
-        'light-terminal-green': '#F97316',
+        'light-code-bg': '#FBF6EB',
+        'light-code-border': '#D4A574',
+        'light-terminal-green': '#0369A1',
 
-        // 互換維持
-        'background': '#0B0F1A',
+        // rarity
+        'rarity-common': '#94A3B8',
+        'rarity-rare': '#22D3EE',
+        'rarity-epic': '#E879F9',
+        'rarity-legendary': '#FCD34D',
+
+        'background': '#05070D',
       },
       fontFamily: {
         'body': ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
         'mono': ['"Fira Code"', '"JetBrains Mono"', 'monospace'],
-        'display': ['"M PLUS Rounded 1c"', '"Inter"', '"Noto Sans JP"', 'sans-serif'],
+        'display': ['"Oxanium"', '"Inter"', '"Noto Sans JP"', 'sans-serif'],
+      },
+      boxShadow: {
+        'hud-glow': '0 0 20px rgba(34, 211, 238, 0.3), 0 0 40px rgba(34, 211, 238, 0.12)',
+        'hud-magenta': '0 0 20px rgba(232, 121, 249, 0.3), 0 0 40px rgba(232, 121, 249, 0.12)',
       },
     },
   },
