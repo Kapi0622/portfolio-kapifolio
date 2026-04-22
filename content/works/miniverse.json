@@ -7,7 +7,14 @@
   "developmentType": "チーム開発",
   "teamInfo": "3名のミニゲーム班チーム、IoAプロジェクト内サブチーム",
   "role": "企画・要件定義、デザイン、フルスタック開発、ゲーム開発(企画を含む)",
-  "stack": ["HTML", "CSS", "JavaScript", "formspree", "Unity", "C#"],
+  "stack": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "formspree",
+    "Unity",
+    "C#"
+  ],
   "architecture": [],
   "mainImage": "/images/work/miniverse/miniverse-icon.png",
   "images": [
@@ -16,8 +23,14 @@
     "/images/work/miniverse/miniverse-3.png"
   ],
   "links": [
-    { "label": "Miniverse", "url": "https://ioa-minigame-team.github.io/homepage/" },
-    { "label": "IoA Project", "url": "https://ioaproject.com/" }
+    {
+      "label": "Miniverse",
+      "url": "https://ioa-minigame-team.github.io/homepage/"
+    },
+    {
+      "label": "IoA Project",
+      "url": "https://ioaproject.com/"
+    }
   ],
   "summary": "所属学生団体「IoAプロジェクト」内ミニゲーム班の作品紹介サイト。",
   "description": "所属学生団体「IoAプロジェクト」内のチーム「ミニゲーム班」の作品紹介サイトです。当サイトには、チームもしくは個人で制作したゲームのプレイが可能です。サイト制作は主に私一人で制作しました。現在サイトを、React,Next.jsに移行することを検討しています。",
@@ -27,5 +40,6 @@
     "[ゲーム]Speed Slashの制作",
     "[ゲーム]かぜ、ひいちゃうの制作"
   ],
-  "contests": []
+  "contests": [],
+  "rarity": "COMMON"
 }

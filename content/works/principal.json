@@ -7,7 +7,11 @@
   "developmentType": "チーム開発",
   "teamInfo": "5名チーム(エンジニア4名、デザイナー1名)、企画から携わる",
   "role": "企画、設計、プログラム、デバッグ",
-  "stack": ["Unity", "C#", "Gemini(コード生成、デバッグ、仕様検討、画像生成)"],
+  "stack": [
+    "Unity",
+    "C#",
+    "Gemini(コード生成、デバッグ、仕様検討、画像生成)"
+  ],
   "architecture": [],
   "mainImage": "/images/work/principal/main.jpg",
   "images": [
@@ -17,7 +21,10 @@
     "/images/work/principal/ss4.png"
   ],
   "links": [
-    { "label": "Unityroom", "url": "https://unityroom.com/games/ato-hitokoto-de-owaru-koutyou" }
+    {
+      "label": "Unityroom",
+      "url": "https://unityroom.com/games/ato-hitokoto-de-owaru-koutyou"
+    }
   ],
   "summary": "全校集会の「校長先生の長い話」をテーマにしたコミカル耐久アクションゲーム。",
   "description": "本作は、全校集会での「校長先生の長い話」をテーマにした、コミカルな耐久アクションゲームです。プレイヤーは生徒となり、次々と飛んでくる校長の「話の吹き出し」をタップして破壊し、校長の気力（HP）を削って話を終わらせることを目指します。画面内に吹き出しが溜まりすぎると生徒の忍耐が限界を迎えゲームオーバーとなります。時折挟まれる「聞いてますか？」という問いかけには、タイミングよく「相槌ボタン」を長押しして、聞いているフリをしなければなりません。特定の接続詞を壊すと話が分裂して増えるギミックもあり、瞬時の判断が求められます。unity1week（お題「もうひとつ」）参加作品として制作し、限界まで耐え続けるスコアアタック用のエンドレスモード（オンラインランキング対応）も搭載しています。",
@@ -33,5 +40,8 @@
     "スマートフォン操作を考慮したマルチタッチ防止対策の実装",
     "AIツールを活用したゲーム内説明パネルやUI素材の作成"
   ],
-  "contests": ["unity1week"]
+  "contests": [
+    "unity1week"
+  ],
+  "rarity": "EPIC"
 }

@@ -7,7 +7,15 @@
   "developmentType": "個人開発",
   "teamInfo": "ソロプロジェクト、Github Copilotを活用した開発",
   "role": "企画・要件定義、デザイン、フルスタック開発",
-  "stack": ["React", "Next.js", "Tailwind CSS", "Vercel", "FormSpree", "LLM(gemini)", "Github Copilot"],
+  "stack": [
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "Vercel",
+    "FormSpree",
+    "LLM(gemini)",
+    "Github Copilot"
+  ],
   "architecture": [],
   "mainImage": "/images/work/kapifolio/kapifolio.png",
   "images": [
@@ -16,7 +24,10 @@
     "/images/work/kapifolio/kapifolio-image3.png"
   ],
   "links": [
-    { "label": "Live Demo", "url": "https://your-portfolio-url.com" }
+    {
+      "label": "Live Demo",
+      "url": "https://your-portfolio-url.com"
+    }
   ],
   "summary": "自身のスキルと制作実績を紹介するために作成したポートフォリオサイト。",
   "description": "自身のスキルと制作実績を紹介するために作成したポートフォリオサイトです。",
@@ -24,5 +35,6 @@
   "activities": [
     "すべての工程を担当"
   ],
-  "contests": []
+  "contests": [],
+  "rarity": "COMMON"
 }

@@ -7,8 +7,17 @@
   "developmentType": "個人開発",
   "teamInfo": "ソロプロジェクト",
   "role": "企画、設計、プログラム、アート選定",
-  "stack": ["Unity", "C#", "R3", "UniTask"],
-  "architecture": ["MVP", "Strategy Pattern", "State Pattern"],
+  "stack": [
+    "Unity",
+    "C#",
+    "R3",
+    "UniTask"
+  ],
+  "architecture": [
+    "MVP",
+    "Strategy Pattern",
+    "State Pattern"
+  ],
   "mainImage": "/images/work/osouji-robo/placeholder.svg",
   "images": [],
   "links": [],
@@ -25,5 +34,6 @@
   "contests": [
     "ゲームクリエイター甲子園 (出展予定)",
     "神ゲー創造主エボリューション (出展予定)"
-  ]
+  ],
+  "rarity": "LEGENDARY"
 }

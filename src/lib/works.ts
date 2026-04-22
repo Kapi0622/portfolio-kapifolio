@@ -3,6 +3,8 @@ import path from 'node:path';
 
 export type WorkLink = { label: string; url: string };
 
+export type Rarity = 'COMMON' | 'RARE' | 'EPIC' | 'LEGENDARY';
+
 export type Work = {
   slug: string;
   title: string;
@@ -23,6 +25,7 @@ export type Work = {
   techHighlights?: string;
   activities: string[];
   contests?: string[];
+  rarity?: Rarity;
 };
 
 const WORKS_DIR = path.join(process.cwd(), 'content', 'works');

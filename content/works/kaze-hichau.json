@@ -7,7 +7,11 @@
   "developmentType": "チーム開発",
   "teamInfo": "ミニゲーム班チーム所属の2名で制作",
   "role": "企画、プログラム、ステージデザイン 等",
-  "stack": ["Unity", "C#", "Gemini(画像生成、制作サポート)"],
+  "stack": [
+    "Unity",
+    "C#",
+    "Gemini(画像生成、制作サポート)"
+  ],
   "architecture": [],
   "mainImage": "/images/work/kaze-hichau/kaze-hichau.png",
   "images": [
@@ -17,9 +21,18 @@
     "/images/work/kaze-hichau/kaze-hichau-4.png"
   ],
   "links": [
-    { "label": "Unityroom", "url": "https://unityroom.com/games/kaze-hichau" },
-    { "label": "Miniverse", "url": "https://ioa-minigame-team.github.io/homepage/kaze-hichau.html" },
-    { "label": "Github", "url": "https://github.com/IoA-minigame-team/gamejam-first" }
+    {
+      "label": "Unityroom",
+      "url": "https://unityroom.com/games/kaze-hichau"
+    },
+    {
+      "label": "Miniverse",
+      "url": "https://ioa-minigame-team.github.io/homepage/kaze-hichau.html"
+    },
+    {
+      "label": "Github",
+      "url": "https://github.com/IoA-minigame-team/gamejam-first"
+    }
   ],
   "summary": "風邪をテーマにしたバンサバライクのカジュアルゲーム。",
   "description": "かぜ、ひいちゃうは、風邪をテーマにしたバンサバライクのカジュアルゲームです。謎のウイルスが蔓延し人々が咳き込みながらさまよう荒廃した世界で、数少ない正気な生存者であるプレイヤーは、次々と襲い来る敵の攻撃をひたすら避け、落ちているマスクを命綱にして1秒でも長く生き延びることを目指します。私は、ゲームの企画やデザイン、実装を担当しました。",
@@ -35,5 +48,6 @@
     "BGM・SEの実装",
     "Unityroomへの公開作業とスコアのAPI連携"
   ],
-  "contests": []
+  "contests": [],
+  "rarity": "RARE"
 }

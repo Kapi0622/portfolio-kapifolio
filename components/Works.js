@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from '../src/contexts/ThemeContext';
 import WorkCard from '../src/components/works/WorkCard';
+import SectionBanner from '../src/components/hud/SectionBanner';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -18,43 +19,27 @@ const cardVariants = {
  * @param {{ works?: import('../src/lib/works').Work[] }} props
  */
 const Works = ({ works }) => {
-  const items = works ?? [];
   const { isDark } = useTheme();
+  const items = works ?? [];
 
   return (
     <motion.section
       id="works"
-      className={`py-24 sm:py-28 md:py-32 lg:py-40 transition-colors duration-300 ${
+      className={`py-24 sm:py-28 md:py-32 transition-colors duration-300 ${
         isDark ? 'bg-bg-primary text-text-main' : 'bg-light-bg-primary text-light-text-main'
       }`}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: false, amount: 0.05 }}
       variants={containerVariants}
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.h2
-          className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-3 ${
-            isDark ? 'text-primary' : 'text-light-primary'
-          }`}
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          Works
-        </motion.h2>
-        <motion.p
-          className={`mb-10 sm:mb-12 text-base sm:text-lg ${
-            isDark ? 'text-text-sub' : 'text-light-text-sub'
-          }`}
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-        >
-          これまでに携わった成果物。クリックで詳細ページへ。
-        </motion.p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <SectionBanner
+          stage="STAGE_01"
+          title="ARSENAL — UNLOCKED PROJECTS"
+          subtitle="これまでに携わった成果物。カードをクリックで詳細ページへ。"
+          count={items.length}
+        />
 
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
