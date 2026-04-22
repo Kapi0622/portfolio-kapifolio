@@ -1,0 +1,39 @@
+{
+  "groups": [
+    {
+      "name": "Game Development",
+      "items": [
+        { "name": "Unity", "level": "proficient", "note": "主力ツール。2D/3D 両方の開発経験あり" },
+        { "name": "C#", "level": "proficient", "note": "Unity 開発で日常的に使用" },
+        { "name": "R3", "level": "learning", "note": "リアクティブプログラミング (UniRx 後継) を学習中" },
+        { "name": "UniTask", "level": "learning", "note": "GC アロケーション 0 の非同期処理" }
+      ]
+    },
+    {
+      "name": "Web Development",
+      "items": [
+        { "name": "TypeScript", "level": "proficient" },
+        { "name": "React", "level": "proficient" },
+        { "name": "Next.js", "level": "proficient", "note": "App Router / SSG" },
+        { "name": "Tailwind CSS", "level": "proficient" },
+        { "name": "Ruby / Rails", "level": "familiar", "note": "SAKITO チームでの学習中" }
+      ]
+    },
+    {
+      "name": "Architecture / Pattern",
+      "items": [
+        { "name": "MVP", "level": "proficient" },
+        { "name": "Strategy Pattern", "level": "learning" },
+        { "name": "State Pattern", "level": "learning" }
+      ]
+    },
+    {
+      "name": "Tools",
+      "items": [
+        { "name": "Git / GitHub", "level": "proficient" },
+        { "name": "Docker", "level": "familiar" },
+        { "name": "Figma", "level": "familiar" }
+      ]
+    }
+  ]
+}
