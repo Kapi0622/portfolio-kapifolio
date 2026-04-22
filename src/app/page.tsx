@@ -15,9 +15,7 @@ export default function Home() {
 
   return (
     <SiteShell>
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        <HomeHero />
-      </main>
+      <HomeHero />
 
       <AboutSite />
       <AboutMe />
