@@ -1,27 +1,28 @@
-import AboutSite from '../../components/AboutSite';
-import AboutMe from '../../components/AboutMe';
 import Works from '../../components/Works';
-import Profile from '../../components/Profile';
 import Contact from '../../components/Contact';
 import SiteShell from '../components/SiteShell';
 import HomeHero from '../components/HomeHero';
+import SkillsSection from '../components/skills/SkillsSection';
 import EventsSection from '../components/events/EventsSection';
+import ProfileSection from '../components/profile/ProfileSection';
 import { getAllWorks } from '../lib/works';
 import { getAllEvents } from '../lib/events';
+import { getSkills } from '../lib/skills';
+import { getProfile } from '../lib/profile';
 
 export default function Home() {
   const works = getAllWorks();
   const events = getAllEvents();
+  const skills = getSkills();
+  const profile = getProfile();
 
   return (
     <SiteShell>
       <HomeHero />
-
-      <AboutSite />
-      <AboutMe />
       <Works works={works} />
+      <SkillsSection skills={skills} />
       <EventsSection events={events} />
-      <Profile />
+      <ProfileSection profile={profile} />
       <Contact />
     </SiteShell>
   );

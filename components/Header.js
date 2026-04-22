@@ -8,6 +8,7 @@ import { useTheme } from '../src/contexts/ThemeContext';
 
 const navLinks = [
   { name: '成果物', href: '/#works' },
+  { name: 'スキル', href: '/#skills' },
   { name: '参加イベント', href: '/#events' },
   { name: '略歴', href: '/#profile' },
   { name: 'お問い合わせ', href: '/#contact' },
