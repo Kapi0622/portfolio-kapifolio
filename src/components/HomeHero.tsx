@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
+import HeroBackdrop from './effects/HeroBackdrop';
 
 const TECH_BADGES = ['Unity', 'C#', 'Next.js', 'TypeScript', 'MVP / State Pattern'];
 
@@ -25,7 +26,7 @@ export default function HomeHero() {
 
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* 背景装飾 (CSSのみ、軽量) */}
+      {/* 背景: グラデーション + 浮遊シェイプ / 星空 */}
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-0 ${
@@ -34,6 +35,7 @@ export default function HomeHero() {
             : 'bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.22),transparent_55%),radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.18),transparent_55%)]'
         }`}
       />
+      <HeroBackdrop />
 
       <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-28 sm:pt-28 sm:pb-36">
         <motion.div
