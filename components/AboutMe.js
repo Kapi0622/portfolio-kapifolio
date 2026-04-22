@@ -1,3 +1,5 @@
+"use client";
+
 // Font Awesome 6のアイコンライブラリから必要なSNSアイコンをインポート
 import { FaXTwitter, FaGithub, FaInstagram } from 'react-icons/fa6';
 import { useTheme } from '../src/contexts/ThemeContext';

@@ -3,3 +3,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Markdown (react-markdown) 本文スタイル */
+.prose-custom p { margin: 0 0 1em; }
+.prose-custom ul { list-style: disc; padding-left: 1.25em; margin: 0 0 1em; }
+.prose-custom ol { list-style: decimal; padding-left: 1.25em; margin: 0 0 1em; }
+.prose-custom li { margin: 0.25em 0; }
+.prose-custom a { text-decoration: underline; }
+.prose-custom strong { font-weight: 600; }
+.prose-custom code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: rgba(127,127,127,0.15);
+}
+
+.tech-writeup h2 { font-size: 1.15rem; font-weight: 700; margin: 1.2em 0 0.5em; }
+.tech-writeup h3 { font-size: 1rem; font-weight: 600; margin: 1em 0 0.4em; }
+.tech-writeup h2:first-child, .tech-writeup h3:first-child { margin-top: 0; }
+.tech-writeup p { margin: 0 0 0.8em; }
+.tech-writeup ul { list-style: disc; padding-left: 1.25em; margin: 0 0 0.8em; }
+.tech-writeup li { margin: 0.25em 0; }
+.tech-writeup strong { font-weight: 600; }
+.tech-writeup code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: rgba(127,127,127,0.15);
+}
