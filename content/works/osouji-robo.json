@@ -1,0 +1,29 @@
+{
+  "slug": "osouji-robo",
+  "title": "お掃除ロボ、暴走中。",
+  "order": 0,
+  "genre": "3Dトップダウンアクションゲーム",
+  "period": "2026/01〜 (開発中)",
+  "developmentType": "個人開発",
+  "teamInfo": "ソロプロジェクト",
+  "role": "企画、設計、プログラム、アート選定",
+  "stack": ["Unity", "C#", "R3", "UniTask"],
+  "architecture": ["MVP", "Strategy Pattern", "State Pattern"],
+  "mainImage": "/images/work/osouji-robo/placeholder.svg",
+  "images": [],
+  "links": [],
+  "summary": "掃除ロボが暴走し、エスカレートする武器で戦う3Dトップダウンアクション。",
+  "description": "お掃除ロボットが暴走し、日常のあらゆる物体を武器にしながら戦う3Dトップダウンアクションゲームです。プレイヤーは暴走した掃除ロボを操作し、敵の掃除用具や家電と戦いながら進行します。武器は使うほどエスカレートしていき、後半は想像を超えた破天荒な展開になります。",
+  "techHighlights": "## 技術的こだわり\n\n### アーキテクチャ\n- **MVP パターン**: ロジックと表示を明確に分離し、テスタビリティとメンテナンス性を担保\n- **State Pattern**: プレイヤーの状態 (通常 / 暴走 / 被弾 など) をクラスとして分離、状態遷移の安全性を確保\n- **Strategy Pattern**: 武器の挙動をインターフェース越しに差し替え、武器追加コストを最小化\n\n### リアクティブ・非同期\n- **R3** によるリアクティブな状態同期 (UniRx 後継)\n- **UniTask** で GC アロケーション 0 の非同期処理、Coroutine 依存からの脱却\n\n### 設計方針\n- 武器追加は ScriptableObject + Strategy 実装の追加のみで完結する拡張性重視の設計\n- Presenter を薄く保ち、View の差し替え (例: VR 対応) が可能な構造\n",
+  "activities": [
+    "ゲームコンセプト・企画立案",
+    "MVP / Strategy / State Pattern に基づくアーキテクチャ設計",
+    "R3 を用いたリアクティブな状態管理の導入",
+    "UniTask による非同期フロー整理",
+    "プレイヤー・武器・敵 AI の実装"
+  ],
+  "contests": [
+    "ゲームクリエイター甲子園 (出展予定)",
+    "神ゲー創造主エボリューション (出展予定)"
+  ]
+}
