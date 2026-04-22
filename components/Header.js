@@ -1,351 +1,189 @@
-"use client"; // ← ブラウザで動かすためのおまじない（Next.jsのクライアントコンポーネント宣言）
+"use client";
 
-// Reactの機能をインポート（useStateはデータの状態管理に使用、useEffectは副作用処理に使用）
 import { useState, useEffect } from 'react';
-// アイコンライブラリからメニューアイコンとXアイコン、テーマ切り替えアイコンをインポート
-import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
-// Framer Motionをインポート
+import Link from 'next/link';
+import { FiMenu, FiX } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
-// テーマコンテキストをインポート
 import { useTheme } from '../src/contexts/ThemeContext';
 
-// ヘッダーコンポーネントの定義（サイト上部のナビゲーション部分）
+const navLinks = [
+  { name: '成果物', href: '/#works' },
+  { name: '参加イベント', href: '/#events' },
+  { name: '略歴', href: '/#profile' },
+  { name: 'お問い合わせ', href: '/#contact' },
+];
+
+const ThemeToggle = ({ isDark, onToggle }) => {
+  return (
+    <button
+      onClick={onToggle}
+      aria-label={isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え'}
+      className={`relative w-14 h-7 rounded-full border transition-colors duration-300 flex items-center ${
+        isDark
+          ? 'bg-bg-tertiary border-code-border'
+          : 'bg-light-bg-tertiary border-light-code-border'
+      }`}
+    >
+      <motion.span
+        className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full shadow-md flex items-center justify-center text-xs ${
+          isDark ? 'bg-primary text-bg-primary' : 'bg-light-primary text-white'
+        }`}
+        animate={{ x: isDark ? 0 : 26 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      >
+        {isDark ? '🌙' : '☀️'}
+      </motion.span>
+    </button>
+  );
+};
+
+const PartyButton = ({ active, onToggle, isDark }) => (
+  <motion.button
+    onClick={onToggle}
+    aria-label={active ? 'パーティモードを停止' : 'パーティモードを開始'}
+    className={`w-10 h-10 rounded-full flex items-center justify-center border transition-colors duration-300 ${
+      active
+        ? isDark
+          ? 'bg-accent border-accent'
+          : 'bg-light-secondary border-light-secondary'
+        : isDark
+          ? 'border-code-border hover:bg-bg-tertiary'
+          : 'border-light-code-border hover:bg-light-bg-tertiary'
+    }`}
+    whileHover={{ scale: 1.08 }}
+    whileTap={{ scale: 0.92 }}
+  >
+    <motion.span
+      animate={{ rotate: active ? [0, 14, -14, 14, 0] : 0 }}
+      transition={{ duration: 0.6, repeat: active ? Infinity : 0, repeatDelay: 0.2 }}
+      className="text-lg"
+    >
+      🎉
+    </motion.span>
+  </motion.button>
+);
+
 const Header = ({ isPartyActive, setIsPartyActive }) => {
-  // テーマコンテキストの取得
   const { isDark, toggleTheme } = useTheme();
-  
-  // モバイルメニューの開閉状態を管理する変数
-  // isOpen: 現在の状態（true=開いている、false=閉じている）
-  // setIsOpen: 状態を変更するための関数
   const [isOpen, setIsOpen] = useState(false);
-  
-  // スクロール状態を管理する変数
-  // isScrolled: 現在の状態（true=スクロールされている、false=ページ上部）
-  // setIsScrolled: 状態を変更するための関数
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // スクロール検知の処理
   useEffect(() => {
-    const handleScroll = () => {
-      // ページを50px以上スクロールしたらisScrolledをtrueに設定
-      setIsScrolled(window.scrollY > 50);
-    };
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-    // スクロールイベントリスナーを追加
-    window.addEventListener('scroll', handleScroll);
-
-    // コンポーネントがアンマウントされる時にイベントリスナーを削除（メモリリーク防止）
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []); // 空の依存配列なので、マウント時に一度だけ実行
-    // ナビゲーションリンクの配列（メニュー項目のデータ）
-  const navLinks = [
-    { name: 'このサイトについて', href: '#about-site' }, // サイト紹介セクションへのリンク
-    { name: '自己紹介', href: '#about-me' },          // 自己紹介セクションへのリンク
-    { name: '成果物', href: '#works' },                // 制作物セクションへのリンク
-    { name: '参加イベント', href: '#events' },         // 参加イベント/インターンセクションへのリンク
-    { name: '略歴', href: '#profile' },            // プロフィールセクションへのリンク
-    { name: 'お問い合わせ', href: '#contact' },            // お問い合わせセクションへのリンク
-  ];
-
-  // アニメーション設定
-  const mobileMenuVariants = {
-    hidden: { 
-      x: '100%',
-      opacity: 0
-    },
-    visible: { 
-      x: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 30
-      }
-    },
-    exit: {
-      x: '100%',
-      opacity: 0,
-      transition: {
-        duration: 0.3
-      }
-    }
-  };
-
-  // JSXを返す（HTMLのような記法でUI構造を定義）
   return (
-    <motion.header 
-      className={`shadow-md sticky top-0 z-50 transition-all duration-300 ${
-        isOpen 
-          ? `${isDark ? 'bg-bg-primary border-b border-code-border' : 'bg-light-bg-primary border-b border-light-code-border'}`
-          : isScrolled 
-            ? `${isDark ? 'bg-bg-primary bg-opacity-95 backdrop-blur-md border-b border-code-border' : 'bg-light-bg-primary bg-opacity-95 backdrop-blur-md border-b border-light-code-border'}`
-            : `${isDark ? 'bg-bg-primary bg-opacity-80' : 'bg-light-bg-primary bg-opacity-80'}`
-      }`}
-      initial={{ y: -100 }}
+    <motion.header
+      initial={{ y: -60 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled || isOpen
+          ? isDark
+            ? 'bg-bg-primary/90 backdrop-blur-md border-b border-code-border'
+            : 'bg-light-bg-primary/90 backdrop-blur-md border-b border-light-code-border'
+          : 'bg-transparent'
+      }`}
     >
-      {/* 最大幅を設定し、中央寄せにするコンテナ */}
-      <div className="max-w-5xl mx-auto px-4">
-        {/* フレックスボックスでロゴとメニューを横並びに配置 */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-            {/* ロゴ部分 */}
-          <motion.div 
-            className="flex-1 md:flex-initial"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+          {/* ロゴ */}
+          <Link
+            href="/"
+            className={`font-display text-2xl font-bold tracking-tight ${
+              isDark ? 'text-text-main' : 'text-light-text-main'
+            }`}
           >
-            <motion.a 
-              href="#top" 
-              className={`text-2xl font-bold font-mono ${
-                isDark ? 'text-primary' : 'text-light-primary'
-              }`}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className={isDark ? 'text-terminal-green' : 'text-light-terminal-green'}>$</span> Kapifolio<span className={`${isDark ? 'text-accent' : 'text-light-accent'} animate-pulse`}>_</span>
-            </motion.a>
-          </motion.div>          {/* デスクトップ用ナビゲーション（画面サイズがmd以上の時に表示） */}
-          <div className="hidden md:flex items-center space-x-6">
-            <nav className="flex space-x-6">
-              {/* navLinks配列の各項目をループで表示 */}
-              {navLinks.map((link, index) => (
-                <motion.a 
-                  key={link.name} 
-                  href={link.href} 
-                  className={`${
-                    isDark 
-                      ? 'text-text-sub hover:text-primary' 
-                      : 'text-light-text-sub hover:text-light-primary'
-                  } transition font-mono text-base relative group`}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    transition: { duration: 0.15 } // アニメーション速度を上げる
-                  }}
-                >
-                  <span className={`${
-                    isDark ? 'text-terminal-green' : 'text-light-terminal-green'
-                  } opacity-0 group-hover:opacity-100 transition-opacity`}>→ </span>
-                  {link.name}
-                  <div className={`absolute bottom-0 left-0 w-0 h-0.5 ${
+            Kapi<span className={isDark ? 'text-primary' : 'text-light-primary'}>.</span>folio
+          </Link>
+
+          {/* デスクトップナビ */}
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`text-sm transition-colors relative group ${
+                  isDark
+                    ? 'text-text-sub hover:text-primary'
+                    : 'text-light-text-sub hover:text-light-primary'
+                }`}
+              >
+                {link.name}
+                <span
+                  className={`absolute left-0 -bottom-1 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
                     isDark ? 'bg-primary' : 'bg-light-primary'
-                  } group-hover:w-full transition-all duration-300`}></div>
-                </motion.a>
-              ))}
-            </nav>
-            
-            {/* テーマ切り替えボタン */}
-            <motion.button
-              onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-all duration-300 group border ${
-                isDark 
-                  ? 'hover:bg-bg-tertiary border-code-border' 
-                  : 'hover:bg-light-bg-tertiary border-light-code-border'
+                  }`}
+                />
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
+            <PartyButton
+              active={isPartyActive}
+              onToggle={() => setIsPartyActive(!isPartyActive)}
+              isDark={isDark}
+            />
+
+            {/* モバイルメニューボタン */}
+            <button
+              onClick={() => setIsOpen((v) => !v)}
+              aria-label={isOpen ? 'メニューを閉じる' : 'メニューを開く'}
+              className={`md:hidden w-10 h-10 rounded-full border flex items-center justify-center ${
+                isDark
+                  ? 'border-code-border text-text-main'
+                  : 'border-light-code-border text-light-text-main'
               }`}
-              whileHover={{ 
-                scale: 1.1, 
-                borderColor: isDark ? "#10b981" : "#0ea5e9",
-                rotate: 180
-              }}
-              whileTap={{ scale: 0.9 }}
-              title={isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え'}
             >
-              <motion.div
-                initial={false}
-                animate={{ 
-                  rotate: isDark ? 0 : 180,
-                  color: isDark ? "#f59e0b" : "#dc2626"
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
-              </motion.div>
-            </motion.button>
-            
-            {/* パーティモードボタン */}
-            <motion.button
-              onClick={() => setIsPartyActive(!isPartyActive)}
-              className={`p-2 rounded-lg transition-all duration-300 group border ${
-                isPartyActive
-                  ? isDark
-                    ? 'bg-accent border-accent'
-                    : 'bg-light-accent border-light-accent'
-                  : isDark 
-                    ? 'hover:bg-bg-tertiary border-code-border' 
-                    : 'hover:bg-light-bg-tertiary border-light-code-border'
-              }`}
-              whileHover={{ 
-                scale: 1.1, 
-                borderColor: isPartyActive ? "#f472b6" : (isDark ? "#10b981" : "#0ea5e9"),
-              }}
-              whileTap={{ scale: 0.9, rotate: 15 }}
-              title={isPartyActive ? 'パーティモードを停止' : 'パーティモードを開始'}
-            >
-              <motion.div
-                animate={{ 
-                  rotate: isPartyActive ? [0, 10, -10, 10, 0] : 0,
-                }}
-                transition={{ 
-                  duration: 0.5,
-                  repeat: isPartyActive ? Infinity : 0,
-                  repeatDelay: 0.2
-                }}
-              >
-                🎉
-              </motion.div>
-            </motion.button>
-          </div>
-          
-          {/* モバイル用ハンバーガーメニューボタンとテーマ切り替え（画面サイズがmd未満の時に表示） */}
-          <div className="md:hidden flex items-center space-x-2">
-            {/* モバイル用テーマ切り替えボタン */}
-            <motion.button
-              onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-all duration-300 border ${
-                isDark 
-                  ? 'hover:bg-bg-tertiary border-code-border' 
-                  : 'hover:bg-light-bg-tertiary border-light-code-border'
-              }`}
-              whileHover={{ 
-                scale: 1.1, 
-                borderColor: isDark ? "#10b981" : "#0ea5e9"
-              }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <motion.div
-                animate={{ 
-                  rotate: isDark ? 0 : 180,
-                  color: isDark ? "#f59e0b" : "#dc2626"
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
-              </motion.div>
-            </motion.button>
-            
-            {/* モバイル用パーティモードボタン */}
-            <motion.button
-              onClick={() => setIsPartyActive(!isPartyActive)}
-              className={`p-2 rounded-lg transition-all duration-300 border ${
-                isPartyActive
-                  ? isDark
-                    ? 'bg-accent border-accent'
-                    : 'bg-light-accent border-light-accent'
-                  : isDark 
-                    ? 'hover:bg-bg-tertiary border-code-border' 
-                    : 'hover:bg-light-bg-tertiary border-light-code-border'
-              }`}
-              whileHover={{ 
-                scale: 1.1, 
-                borderColor: isPartyActive ? "#f472b6" : (isDark ? "#10b981" : "#0ea5e9"),
-              }}
-              whileTap={{ scale: 0.9, rotate: 15 }}
-            >
-              <motion.div
-                animate={{ 
-                  rotate: isPartyActive ? [0, 10, -10, 10, 0] : 0,
-                }}
-                transition={{ 
-                  duration: 0.5,
-                  repeat: isPartyActive ? Infinity : 0,
-                  repeatDelay: 0.2
-                }}
-              >
-                🎉
-              </motion.div>
-            </motion.button>
-            
-            {/* ハンバーガーメニューボタン */}
-            <motion.button 
-              onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-lg transition border ${
-                isDark 
-                  ? 'text-text-main hover:bg-bg-tertiary border-code-border' 
-                  : 'text-light-text-main hover:bg-light-bg-tertiary border-light-code-border'
-              }`}
-              whileHover={{ 
-                scale: 1.1, 
-                borderColor: isDark ? "#10b981" : "#0ea5e9" 
-              }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </motion.button>
+              {isOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+            </button>
           </div>
         </div>
-      </div>        {/* モバイル用スライドメニュー（画面右側から出現） */}
+      </div>
+
+      {/* モバイルメニュー */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* オーバーレイ（背景クリックで閉じる） */}
-            <motion.div 
-              className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+            <motion.div
+              className="fixed inset-0 bg-black/40 z-30 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-            />              {/* メニュー本体 */}
-            <motion.div 
-              className={`fixed top-0 right-0 h-full shadow-xl z-40 md:hidden w-64 border-l ${
-                isDark 
-                  ? 'bg-bg-primary border-code-border' 
+            />
+            <motion.nav
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 320, damping: 30 }}
+              className={`fixed top-0 right-0 h-full w-64 z-40 md:hidden border-l p-6 pt-20 ${
+                isDark
+                  ? 'bg-bg-primary border-code-border'
                   : 'bg-light-bg-primary border-light-code-border'
               }`}
-              variants={mobileMenuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
             >
-            {/* メニューヘッダー - 閉じるボタン */}
-            <div className="flex justify-end p-4">
-              <motion.button 
-                onClick={() => setIsOpen(false)}
-                className={`${
-                  isDark 
-                    ? 'text-text-muted hover:text-text-main' 
-                    : 'text-light-text-muted hover:text-light-text-main'
-                }`}
-                whileHover={{ scale: 1.1, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FiX size={28} />
-              </motion.button>
-            </div>
-            
-            {/* メニュー内のパディング調整 */}
-            <div className="px-6">
-              {/* モバイル用ナビゲーションリンク（縦並び） */}
-              <nav className="flex flex-col space-y-4">                {navLinks.map((link) => (
-                  <motion.a 
-                    key={link.name} 
-                    href={link.href} 
-                    className={`text-lg transition ${
-                      isDark 
-                        ? 'text-text-sub hover:text-primary' 
+              <div className="flex flex-col gap-4">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base py-2 ${
+                      isDark
+                        ? 'text-text-sub hover:text-primary'
                         : 'text-light-text-sub hover:text-light-primary'
                     }`}
-                    onClick={() => setIsOpen(false)} // リンククリック時にメニューを閉じる
-                    initial="hidden"
-                    animate="visible"
-                    whileHover={{ 
-                      x: 10, 
-                      color: isDark ? "#10b981" : "#0ea5e9",
-                      transition: { duration: 0.1 } // アニメーション速度を大幅に上げる
-                    }}
                   >
                     {link.name}
-                  </motion.a>
+                  </a>
                 ))}
-              </nav>
-            </div>
-          </motion.div>
+              </div>
+            </motion.nav>
           </>
         )}
       </AnimatePresence>
@@ -353,5 +191,4 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
   );
 };
 
-// このコンポーネントを他のファイルで使用できるようにエクスポート
 export default Header;
