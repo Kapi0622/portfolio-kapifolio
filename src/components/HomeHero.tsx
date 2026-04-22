@@ -1,112 +1,167 @@
 "use client";
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
-import HeroBackdrop from './effects/HeroBackdrop';
 
-const TECH_BADGES = ['Unity', 'C#', 'Next.js', 'TypeScript', 'MVP / State Pattern'];
+const HeroModel = dynamic(() => import('./effects/HeroModel'), { ssr: false });
+
+const STATS = [
+  { label: 'LVL', value: '20' },
+  { label: 'PROG', value: '3Y' },
+  { label: 'PROJECTS', value: '07' },
+  { label: 'BUILDS', value: '∞' },
+];
+
+const BOOT_LINES = [
+  '> booting kapi.sys',
+  '> loading identity ... ok',
+  '> mission_ready',
+];
 
 export default function HomeHero() {
   const { isDark } = useTheme();
 
-  const textMain = isDark ? 'text-text-main' : 'text-light-text-main';
-  const textSub = isDark ? 'text-text-sub' : 'text-light-text-sub';
+  const main = isDark ? 'text-text-main' : 'text-light-text-main';
+  const muted = isDark ? 'text-text-sub' : 'text-light-text-sub';
+  const subtle = isDark ? 'text-text-muted' : 'text-light-text-muted';
   const accent = isDark ? 'text-primary' : 'text-light-primary';
-  const secondary = isDark ? 'text-secondary' : 'text-light-secondary';
-  const badge = isDark
-    ? 'bg-bg-tertiary border-code-border text-text-sub'
-    : 'bg-light-bg-tertiary border-light-code-border text-light-text-sub';
-  const primaryBtn = isDark
-    ? 'bg-primary text-bg-primary hover:bg-primary/80'
-    : 'bg-light-primary text-white hover:bg-light-primary/85';
-  const ghostBtn = isDark
-    ? 'border border-code-border text-text-main hover:bg-bg-tertiary'
-    : 'border border-light-code-border text-light-text-main hover:bg-light-bg-tertiary';
+  const accentBg = isDark ? 'bg-primary text-bg-primary' : 'bg-light-primary text-white';
+  const border = isDark ? 'border-code-border' : 'border-light-code-border';
 
   return (
-    <section id="top" className="relative overflow-hidden">
-      {/* 背景: グラデーション + 浮遊シェイプ / 星空 */}
+    <section id="top" className="relative overflow-hidden min-h-[90vh] flex items-center hud-grid-bg">
+      {/* radial glow */}
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-0 ${
           isDark
-            ? 'bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.15),transparent_60%),radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.15),transparent_60%)]'
-            : 'bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.22),transparent_55%),radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.18),transparent_55%)]'
+            ? 'bg-[radial-gradient(circle_at_70%_30%,rgba(34,211,238,0.2),transparent_60%),radial-gradient(circle_at_20%_80%,rgba(232,121,249,0.15),transparent_55%)]'
+            : 'bg-[radial-gradient(circle_at_70%_30%,rgba(3,105,161,0.22),transparent_60%),rgba(244,238,226,0.3)]'
         }`}
       />
-      <HeroBackdrop />
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-28 sm:pt-28 sm:pb-36">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className={`inline-flex items-center gap-2 text-xs sm:text-sm font-medium tracking-wider uppercase ${textSub} mb-6`}
-        >
-          <span className={`h-2 w-2 rounded-full ${isDark ? 'bg-primary' : 'bg-light-primary'} animate-pulse`} />
-          Game <span className={accent}>×</span> Web Developer
-        </motion.div>
+      <div className="relative max-w-7xl mx-auto w-full px-6 lg:px-12 py-20 sm:py-24 grid lg:grid-cols-12 gap-8 items-center">
+        {/* 左: タイトル */}
+        <div className="lg:col-span-7">
+          {/* boot lines */}
+          <div className={`font-mono text-[11px] tracking-widest ${accent} mb-6 space-y-1`}>
+            {BOOT_LINES.map((l, i) => (
+              <motion.div
+                key={l}
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 + i * 0.15, duration: 0.3 }}
+              >
+                {l}
+              </motion.div>
+            ))}
+          </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className={`font-display font-bold tracking-tight text-5xl sm:text-7xl md:text-8xl ${textMain}`}
-        >
-          Kapi<span className={accent}>.</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className={`mt-6 text-lg sm:text-2xl font-medium max-w-2xl ${textMain}`}
-        >
-          ゲームと Web で、日常に<span className={secondary}>彩り</span>と<span className={accent}>活力</span>を生み出すエンジニア。
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className={`mt-3 text-sm sm:text-base max-w-xl ${textSub}`}
-        >
-          Unity / C# を中心にゲームを作り、React / Next.js で Web も作る。MVP や State Pattern など、保守性の高いアーキテクチャを意識した設計を好みます。
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 flex flex-wrap gap-2"
-        >
-          {TECH_BADGES.map((t) => (
-            <span key={t} className={`px-3 py-1 text-xs sm:text-sm rounded-full border ${badge}`}>
-              {t}
-            </span>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-10 flex flex-wrap gap-3"
-        >
-          <Link
-            href="#works"
-            className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm sm:text-base font-semibold transition-colors ${primaryBtn}`}
+          {/* Big title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className={`font-display font-extrabold tracking-tight text-6xl sm:text-8xl md:text-9xl leading-[0.9] ${main}`}
           >
-            作品を見る
-            <span aria-hidden>→</span>
-          </Link>
-          <Link
-            href="#contact"
-            className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm sm:text-base font-semibold transition-colors ${ghostBtn}`}
+            KAPI<span className={accent}>.</span>EXE
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9 }}
+            className={`mt-4 font-mono text-[11px] sm:text-sm tracking-[0.3em] ${muted}`}
           >
-            お問い合わせ
-          </Link>
+            PLAYER_01 / GAME <span className={accent}>×</span> WEB DEVELOPER
+          </motion.div>
+
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
+            className={`mt-8 text-lg sm:text-xl md:text-2xl font-medium max-w-2xl ${main}`}
+          >
+            ゲームと Web で、日常に<span className={isDark ? 'text-secondary' : 'text-light-secondary'}>彩り</span>と<span className={accent}>活力</span>を生み出すエンジニア。
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.25, duration: 0.5 }}
+            className={`mt-3 text-sm max-w-xl ${muted}`}
+          >
+            Unity / C# を中心にゲームを作り、React / Next.js で Web も作る。MVP や State Pattern など、保守性の高いアーキテクチャを意識した設計を好みます。
+          </motion.p>
+
+          {/* Stats ticker */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4 }}
+            className={`mt-10 flex flex-wrap gap-3 font-mono`}
+          >
+            {STATS.map((s) => (
+              <div
+                key={s.label}
+                className={`flex items-center gap-2 border px-3 py-1.5 rounded-md ${border}`}
+              >
+                <span className={`text-[10px] tracking-widest ${subtle}`}>{s.label}</span>
+                <span className={`text-sm font-bold ${accent}`}>{s.value}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.55 }}
+            className="mt-10 flex flex-wrap gap-3"
+          >
+            <Link
+              href="#works"
+              className={`group relative inline-flex items-center gap-2 px-6 py-3 rounded-md font-display font-bold text-sm tracking-widest transition-colors ${accentBg}`}
+            >
+              <motion.span
+                animate={{ opacity: [1, 0.4, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                ▶
+              </motion.span>
+              START
+              <span className="opacity-70 text-[10px] ml-2 font-mono">[ 作品を見る ]</span>
+            </Link>
+            <Link
+              href="#contact"
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-md border font-display text-sm tracking-widest transition-colors ${border} ${main} hover:${isDark ? 'bg-bg-tertiary' : 'bg-light-bg-tertiary'}`}
+            >
+              COMMS
+              <span className="opacity-70 text-[10px] font-mono">[ 連絡 ]</span>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* 右: 3D モデル */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.7, duration: 0.8 }}
+          className="lg:col-span-5 relative hidden lg:block"
+        >
+          <div className={`relative w-full max-w-md mx-auto border ${border} rounded-xl p-4 hud-corner-frame ${accent}`}>
+            <div className={`text-[10px] font-mono tracking-widest ${subtle} mb-2 flex justify-between`}>
+              <span>AVATAR.MESH</span>
+              <span>WIREFRAME</span>
+            </div>
+            <HeroModel />
+            <div className={`mt-2 font-mono text-[10px] tracking-widest ${subtle} flex justify-between`}>
+              <span>RENDERED: WEBGL</span>
+              <span className={`${accent}`}>● LIVE</span>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
