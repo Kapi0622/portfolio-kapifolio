@@ -5,14 +5,17 @@ import Link from 'next/link';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../src/contexts/ThemeContext';
+import { useScrollSpy } from '../src/hooks/useScrollSpy';
 
 const navLinks = [
-  { name: '成果物', href: '/#works' },
-  { name: 'スキル', href: '/#skills' },
-  { name: '参加イベント', href: '/#events' },
-  { name: '略歴', href: '/#profile' },
-  { name: 'お問い合わせ', href: '/#contact' },
+  { name: '成果物', href: '/#works', id: 'works' },
+  { name: 'スキル', href: '/#skills', id: 'skills' },
+  { name: '参加イベント', href: '/#events', id: 'events' },
+  { name: '略歴', href: '/#profile', id: 'profile' },
+  { name: 'お問い合わせ', href: '/#contact', id: 'contact' },
 ];
+
+const SPY_IDS = navLinks.map((l) => l.id);
 
 const ThemeToggle = ({ isDark, onToggle }) => {
   return (
@@ -68,6 +71,7 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
   const { isDark, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const activeId = useScrollSpy(SPY_IDS);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40);
@@ -102,24 +106,27 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
 
           {/* デスクトップナビ */}
           <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`text-sm transition-colors relative group ${
-                  isDark
-                    ? 'text-text-sub hover:text-primary'
-                    : 'text-light-text-sub hover:text-light-primary'
-                }`}
-              >
-                {link.name}
-                <span
-                  className={`absolute left-0 -bottom-1 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
-                    isDark ? 'bg-primary' : 'bg-light-primary'
+            {navLinks.map((link) => {
+              const active = activeId === link.id;
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`text-sm transition-colors relative group ${
+                    active
+                      ? isDark ? 'text-primary' : 'text-light-primary'
+                      : isDark ? 'text-text-sub hover:text-primary' : 'text-light-text-sub hover:text-light-primary'
                   }`}
-                />
-              </a>
-            ))}
+                >
+                  {link.name}
+                  <span
+                    className={`absolute left-0 -bottom-1 h-0.5 transition-all duration-300 ${
+                      active ? 'w-full' : 'w-0 group-hover:w-full'
+                    } ${isDark ? 'bg-primary' : 'bg-light-primary'}`}
+                  />
+                </a>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-3">
