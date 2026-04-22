@@ -1,0 +1,38 @@
+{
+  "slug": "kagagosai",
+  "title": "[ゲーム]加賀五彩パズル",
+  "order": 5,
+  "genre": "デジタルパズルゲーム",
+  "period": "2025",
+  "developmentType": "個人開発",
+  "teamInfo": "ソロプロジェクト",
+  "role": "企画、プログラム、ステージデザイン 等",
+  "stack": ["Unity", "C#", "Gemini(画像生成、制作サポート)"],
+  "architecture": [],
+  "mainImage": "/images/work/kagagosai/kagagosai.png",
+  "images": [
+    "/images/work/kagagosai/kagagosai-1.png",
+    "/images/work/kagagosai/kagagosai-2.png",
+    "/images/work/kagagosai/kagagosai-3.png",
+    "/images/work/kagagosai/kagagosai-4.png"
+  ],
+  "links": [
+    { "label": "Unityroom", "url": "https://unityroom.com/games/kagagoshiki-puzzle" },
+    { "label": "Github", "url": "https://github.com/Kapi0622/kagagosai-puzzle" }
+  ],
+  "summary": "石川県の伝統工芸「九谷焼」の絵付けをデジタルパズルゲームとして再構築。",
+  "description": "本作は石川県の伝統工芸「九谷焼」の絵付けを、小さなお子様でも直感的に楽しめるデジタルパズルゲームとして再構築した作品です。プレイヤーは、加賀藩前田家が奨励した「加賀五彩」（藍、臙脂、草、黄土、古代紫）をモチーフにした美しいピースを使い、時間内にお題となる器の模様を次々と完成させていきます。遊ぶたびに問題が自動生成されるため、何度でも新鮮な気持ちで挑戦できます。ゆっくり作るモードでは、制限時間なしでじっくりと絵付けを楽しむことも可能です。本作は、2025年に金沢で開催される「キッズゲームクリエイターコンテスト(学生の部)」の応募作品として制作しました。",
+  "techHighlights": "",
+  "activities": [
+    "ゲームコンセプト・企画書作成",
+    "ゲーム内アイテム(マスク)の実装",
+    "ステージのデザインと実装",
+    "プレイヤー操作・物理挙動システム開発",
+    "障害物生成・攻撃の衝突判定ロジック実装",
+    "スコアシステム・ゲームオーバー処理実装",
+    "タイトル・リザルト画面の制作と画面遷移の実装",
+    "BGM・SEの実装",
+    "Unityroomへの公開作業とスコアのAPI連携"
+  ],
+  "contests": ["キッズゲームクリエイターコンテスト(学生の部)"]
+}

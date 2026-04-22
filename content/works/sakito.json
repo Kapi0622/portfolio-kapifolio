@@ -1,0 +1,33 @@
+{
+  "slug": "sakito",
+  "title": "SAKITO",
+  "order": 3,
+  "genre": "ポイント獲得型Webサービス",
+  "period": "",
+  "developmentType": "チーム開発",
+  "teamInfo": "約10名の学生開発チーム、PMとしてプロジェクト管理を担当",
+  "role": "PM(プロジェクトマネージャー)、ご意見番",
+  "stack": ["Ruby", "Ruby on Rails", "MySQL", "Docker", "JavaScript", "SCSS"],
+  "architecture": [],
+  "mainImage": "/images/work/SAKITO/SAKITO.png",
+  "images": [
+    "/images/work/SAKITO/SAKITO-1.png",
+    "/images/work/SAKITO/SAKITO-2.png",
+    "/images/work/SAKITO/SAKITO-3.png"
+  ],
+  "links": [
+    { "label": "SAKITO", "url": "https://sakito.cirkit.jp/" },
+    { "label": "CirKit", "url": "https://cirkit.jp/" }
+  ],
+  "summary": "株式会社CirKitが運営するポイント獲得型Webサービス。PMとしてチーム運営を担当。",
+  "description": "SAKITOは、アンケート回答や1日1回のポイントガチャ、招待コードの利用・共有を通じてポイントを獲得できる、株式会社CirKitの運営するウェブサイトです。獲得したポイントは引換券ガチャに使用でき、当選すると学食や学内コンビニで利用可能な引換券が手に入ります。私は、企画提案や組織運営・改善、メンバーマネジメントを主に担っています。エンジニアとしてもSAKITOにバリューを出すために、Ruby・Ruby on Railsの学習を少しずつやっています。",
+  "techHighlights": "",
+  "activities": [
+    "SAKITOチームの組織運営・改善",
+    "イベント企画・運営",
+    "アンケート採用",
+    "お問い合わせ対応",
+    "ステークホルダーとの調整"
+  ],
+  "contests": []
+}

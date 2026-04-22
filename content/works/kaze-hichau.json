@@ -1,0 +1,39 @@
+{
+  "slug": "kaze-hichau",
+  "title": "[ゲーム]かぜ、ひいちゃう",
+  "order": 4,
+  "genre": "バンサバライクカジュアルゲーム",
+  "period": "",
+  "developmentType": "チーム開発",
+  "teamInfo": "ミニゲーム班チーム所属の2名で制作",
+  "role": "企画、プログラム、ステージデザイン 等",
+  "stack": ["Unity", "C#", "Gemini(画像生成、制作サポート)"],
+  "architecture": [],
+  "mainImage": "/images/work/kaze-hichau/kaze-hichau.png",
+  "images": [
+    "/images/work/kaze-hichau/kaze-hichau-1.png",
+    "/images/work/kaze-hichau/kaze-hichau-2.png",
+    "/images/work/kaze-hichau/kaze-hichau-3.png",
+    "/images/work/kaze-hichau/kaze-hichau-4.png"
+  ],
+  "links": [
+    { "label": "Unityroom", "url": "https://unityroom.com/games/kaze-hichau" },
+    { "label": "Miniverse", "url": "https://ioa-minigame-team.github.io/homepage/kaze-hichau.html" },
+    { "label": "Github", "url": "https://github.com/IoA-minigame-team/gamejam-first" }
+  ],
+  "summary": "風邪をテーマにしたバンサバライクのカジュアルゲーム。",
+  "description": "かぜ、ひいちゃうは、風邪をテーマにしたバンサバライクのカジュアルゲームです。謎のウイルスが蔓延し人々が咳き込みながらさまよう荒廃した世界で、数少ない正気な生存者であるプレイヤーは、次々と襲い来る敵の攻撃をひたすら避け、落ちているマスクを命綱にして1秒でも長く生き延びることを目指します。私は、ゲームの企画やデザイン、実装を担当しました。",
+  "techHighlights": "",
+  "activities": [
+    "ゲームコンセプト・企画書作成",
+    "ゲーム内アイテム(マスク)の実装",
+    "ステージのデザインと実装",
+    "プレイヤー操作・物理挙動システム開発",
+    "障害物生成・攻撃の衝突判定ロジック実装",
+    "スコアシステム・ゲームオーバー処理実装",
+    "タイトル・リザルト画面の制作と画面遷移の実装",
+    "BGM・SEの実装",
+    "Unityroomへの公開作業とスコアのAPI連携"
+  ],
+  "contests": []
+}
