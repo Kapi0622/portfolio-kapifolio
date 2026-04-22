@@ -6,11 +6,13 @@ export type SkillLevel = 'proficient' | 'learning' | 'familiar';
 export type SkillItem = {
   name: string;
   level: SkillLevel;
+  levelPercent?: number;
   note?: string;
 };
 
 export type SkillGroup = {
   name: string;
+  code?: string;
   items: SkillItem[];
 };
 

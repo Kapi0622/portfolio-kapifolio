@@ -1,102 +1,126 @@
 "use client";
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
-import type { SkillGroup, SkillLevel, SkillsData } from '../../lib/skills';
+import SectionBanner from '../hud/SectionBanner';
+import type { SkillsData, SkillItem } from '../../lib/skills';
 
 type Props = { skills: SkillsData };
 
-const LEVEL_LABEL: Record<SkillLevel, string> = {
-  proficient: '実務レベル',
-  learning: '学習中',
-  familiar: '基礎理解',
-};
-
-function levelClasses(level: SkillLevel, isDark: boolean) {
-  if (isDark) {
-    switch (level) {
-      case 'proficient': return 'bg-primary/15 text-primary border-primary/40';
-      case 'learning': return 'bg-secondary/15 text-secondary border-secondary/40';
-      case 'familiar': return 'bg-bg-tertiary text-text-sub border-code-border';
-    }
-  }
-  switch (level) {
-    case 'proficient': return 'bg-light-primary/15 text-light-primary border-light-primary/40';
-    case 'learning': return 'bg-light-secondary/15 text-light-secondary border-light-secondary/40';
-    case 'familiar': return 'bg-light-bg-tertiary text-light-text-sub border-light-code-border';
-  }
+function levelLabel(level: SkillItem['level']) {
+  return level === 'proficient' ? 'LV.3' : level === 'learning' ? 'LV.2' : 'LV.1';
 }
 
-function GroupCard({ group, isDark }: { group: SkillGroup; isDark: boolean }) {
-  const cardBg = isDark
-    ? 'bg-bg-secondary border-code-border'
-    : 'bg-light-bg-secondary border-light-code-border';
-  const heading = isDark ? 'text-text-main' : 'text-light-text-main';
-  const muted = isDark ? 'text-text-sub' : 'text-light-text-sub';
-  const itemBg = isDark ? 'bg-bg-primary' : 'bg-light-bg-primary';
-
+function StatBar({ percent, isDark }: { percent: number; isDark: boolean }) {
+  const barBg = isDark ? 'bg-bg-primary' : 'bg-light-bg-primary';
+  const fill = isDark ? 'bg-primary' : 'bg-light-primary';
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5 }}
-      className={`rounded-2xl border p-6 ${cardBg}`}
-    >
-      <h3 className={`text-lg font-bold mb-4 ${heading}`}>{group.name}</h3>
-      <ul className="space-y-2">
-        {group.items.map((item) => (
-          <li key={item.name} className={`rounded-lg px-3 py-2 ${itemBg}`}>
-            <div className="flex items-center justify-between gap-2">
-              <span className={`font-medium ${heading}`}>{item.name}</span>
-              <span className={`shrink-0 text-[11px] px-2 py-0.5 rounded-full border ${levelClasses(item.level, isDark)}`}>
-                {LEVEL_LABEL[item.level]}
-              </span>
-            </div>
-            {item.note && (
-              <p className={`text-xs mt-1 ${muted}`}>{item.note}</p>
-            )}
-          </li>
+    <div className={`relative h-2 rounded-sm overflow-hidden border ${isDark ? 'border-code-border' : 'border-light-code-border'} ${barBg}`}>
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: `${percent}%` }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        className={`absolute inset-y-0 left-0 ${fill}`}
+      />
+      {/* Tick marks */}
+      <div className="absolute inset-0 flex">
+        {[1, 2, 3, 4].map((i) => (
+          <span key={i} className={`flex-1 border-r ${isDark ? 'border-code-border/60' : 'border-light-code-border/60'} last:border-r-0`} />
         ))}
-      </ul>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 export default function SkillsSection({ skills }: Props) {
   const { isDark } = useTheme();
-  const sectionBg = isDark
-    ? 'bg-bg-primary text-text-main'
-    : 'bg-light-bg-primary text-light-text-main';
-  const heading = isDark ? 'text-primary' : 'text-light-primary';
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  const sectionBg = isDark ? 'bg-bg-secondary text-text-main' : 'bg-light-bg-secondary text-light-text-main';
+  const cardBg = isDark ? 'bg-bg-primary border-code-border' : 'bg-light-bg-primary border-light-code-border';
+  const accent = isDark ? 'text-primary' : 'text-light-primary';
   const muted = isDark ? 'text-text-sub' : 'text-light-text-sub';
+  const subtle = isDark ? 'text-text-muted' : 'text-light-text-muted';
+  const active = skills.groups[activeIdx];
 
   return (
     <section id="skills" className={`py-24 sm:py-28 md:py-32 ${sectionBg}`}>
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-3 ${heading}`}
-        >
-          Skills
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className={`mb-10 sm:mb-12 text-base sm:text-lg ${muted}`}
-        >
-          ゲーム・Web 両面で手を動かせる、そして設計で支える。
-        </motion.p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <SectionBanner
+          stage="STAGE_02"
+          title="STATUS PANEL — SKILLS"
+          subtitle="ステータスはおよその自己評価。カテゴリをクリックで切替。"
+        />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
-          {skills.groups.map((group) => (
-            <GroupCard key={group.name} group={group} isDark={isDark} />
-          ))}
+        <div className="grid lg:grid-cols-4 gap-6">
+          {/* カテゴリサイドバー */}
+          <nav className="lg:col-span-1 flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible">
+            {skills.groups.map((g, i) => {
+              const isActive = i === activeIdx;
+              return (
+                <button
+                  key={g.name}
+                  onClick={() => setActiveIdx(i)}
+                  className={`relative text-left px-4 py-3 rounded-md border transition-colors shrink-0 font-mono ${
+                    isActive
+                      ? isDark
+                        ? 'bg-primary/10 border-primary text-primary'
+                        : 'bg-light-primary/10 border-light-primary text-light-primary'
+                      : isDark
+                        ? 'border-code-border text-text-sub hover:bg-bg-tertiary'
+                        : 'border-light-code-border text-light-text-sub hover:bg-light-bg-tertiary'
+                  }`}
+                >
+                  <div className={`text-[10px] tracking-[0.3em] ${isActive ? accent : subtle}`}>
+                    CLASS_{String(i + 1).padStart(2, '0')}
+                  </div>
+                  <div className="text-sm font-bold mt-0.5">{g.code ?? g.name}</div>
+                </button>
+              );
+            })}
+          </nav>
+
+          {/* アクティブカテゴリ詳細 */}
+          <motion.div
+            key={active.name}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className={`lg:col-span-3 rounded-xl border p-6 sm:p-8 ${cardBg} hud-corner-frame ${accent}`}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-display text-xl sm:text-2xl font-bold">{active.name}</h3>
+              <span className={`text-[11px] font-mono tracking-widest ${muted}`}>
+                {active.items.length} SKILLS
+              </span>
+            </div>
+            <ul className="space-y-5">
+              {active.items.map((item) => {
+                const pct = item.levelPercent ?? (item.level === 'proficient' ? 70 : item.level === 'learning' ? 40 : 25);
+                return (
+                  <li key={item.name}>
+                    <div className="flex items-center justify-between gap-3 mb-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className={`font-display font-semibold ${isDark ? 'text-text-main' : 'text-light-text-main'}`}>{item.name}</span>
+                        <span className={`text-[10px] font-mono tracking-widest border px-1.5 rounded-sm ${
+                          isDark ? 'border-code-border text-text-muted' : 'border-light-code-border text-light-text-muted'
+                        }`}>
+                          {levelLabel(item.level)}
+                        </span>
+                      </div>
+                      <span className={`font-mono text-xs ${accent}`}>{pct}%</span>
+                    </div>
+                    <StatBar percent={pct} isDark={isDark} />
+                    {item.note && (
+                      <p className={`mt-1.5 text-xs ${muted}`}>{item.note}</p>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </motion.div>
         </div>
       </div>
     </section>
