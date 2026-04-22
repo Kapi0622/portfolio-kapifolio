@@ -64,7 +64,8 @@ export default function HomeHero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className={`font-display font-extrabold tracking-tight text-6xl sm:text-8xl md:text-9xl leading-[0.9] ${main}`}
+            className={`font-display font-extrabold tracking-tight leading-[0.9] ${main}`}
+            style={{ fontSize: 'clamp(3rem, 13vw, 9rem)' }}
           >
             KAPI<span className={accent}>.</span>EXE
           </motion.h1>

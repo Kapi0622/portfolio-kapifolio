@@ -47,9 +47,9 @@ export default function HudChrome() {
         <CornerBracket position="br" />
       </div>
 
-      {/* Top-left status marker */}
+      {/* Top-left status marker (hidden on narrow) */}
       <div
-        className={`pointer-events-none fixed top-3 left-12 z-40 font-mono text-[10px] tracking-wider ${muted} flex items-center gap-1.5`}
+        className={`pointer-events-none hidden sm:flex fixed top-3 left-12 z-40 font-mono text-[10px] tracking-wider ${muted} items-center gap-1.5`}
         aria-hidden
       >
         <span className={`h-1.5 w-1.5 rounded-full ${isDark ? 'bg-primary' : 'bg-light-primary'} animate-pulse`} />
@@ -58,26 +58,26 @@ export default function HudChrome() {
         <span>KAPI.FOLIO v2.0</span>
       </div>
 
-      {/* Top-right clock */}
+      {/* Top-right clock (hidden on narrow) */}
       <div
-        className={`pointer-events-none fixed top-3 right-12 z-40 font-mono text-[10px] tracking-wider ${muted}`}
+        className={`pointer-events-none hidden sm:block fixed top-3 right-12 z-40 font-mono text-[10px] tracking-wider ${muted}`}
         aria-hidden
       >
         <span className="opacity-70 mr-2">TIME_LOCAL</span>
         <span className={color}>{time || '00:00:00'}</span>
       </div>
 
-      {/* Bottom-right coordinates (fake) */}
+      {/* Bottom-right coordinates (fake, hidden on narrow) */}
       <div
-        className={`pointer-events-none fixed bottom-3 right-12 z-40 font-mono text-[10px] tracking-wider ${muted}`}
+        className={`pointer-events-none hidden sm:block fixed bottom-3 right-12 z-40 font-mono text-[10px] tracking-wider ${muted}`}
         aria-hidden
       >
         LAT 36.58N / LNG 136.63E
       </div>
 
-      {/* Bottom-left mode */}
+      {/* Bottom-left mode (hidden on narrow) */}
       <div
-        className={`pointer-events-none fixed bottom-3 left-12 z-40 font-mono text-[10px] tracking-wider ${muted}`}
+        className={`pointer-events-none hidden sm:block fixed bottom-3 left-12 z-40 font-mono text-[10px] tracking-wider ${muted}`}
         aria-hidden
       >
         MODE <span className={color}>{isDark ? 'NIGHT_OPS' : 'DAY_BRIEF'}</span>
