@@ -2,16 +2,15 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// テーマの型定義
 export const THEMES = {
   DARK: 'dark',
-  LIGHT: 'light'
+  LIGHT: 'light',
 };
 
-// テーマコンテキストの作成
-const ThemeContext = createContext();
+const STORAGE_KEY = 'portfolio-theme';
 
-// カスタムフック：テーマコンテキストを使用するためのフック
+const ThemeContext = createContext(undefined);
+
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
@@ -20,56 +19,61 @@ export const useTheme = () => {
   return context;
 };
 
-// テーマプロバイダーコンポーネント
 export const ThemeProvider = ({ children }) => {
-  // テーマの状態管理（デフォルトはダークモード）
   const [theme, setTheme] = useState(THEMES.DARK);
   const [isClient, setIsClient] = useState(false);
+  const [userSelected, setUserSelected] = useState(false);
 
-  // クライアントサイドでのみ実行される初期化処理
   useEffect(() => {
     setIsClient(true);
-    
-    // ローカルストレージからテーマ設定を読み込み
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme && Object.values(THEMES).includes(savedTheme)) {
-      setTheme(savedTheme);
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved && Object.values(THEMES).includes(saved)) {
+      setTheme(saved);
+      setUserSelected(true);
+      return;
+    }
+
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? THEMES.DARK : THEMES.LIGHT);
     }
   }, []);
 
-  // テーマが変更されたときにローカルストレージに保存
   useEffect(() => {
-    if (isClient) {
-      localStorage.setItem('portfolio-theme', theme);
-      
-      // HTML要素にテーマクラスを適用
-      document.documentElement.setAttribute('data-theme', theme);
-      
-      // ダークモード時の追加クラス
-      if (theme === THEMES.DARK) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+    if (!isClient) return;
+    const mql = window.matchMedia?.('(prefers-color-scheme: dark)');
+    if (!mql) return;
+    const handler = (e) => {
+      if (userSelected) return;
+      setTheme(e.matches ? THEMES.DARK : THEMES.LIGHT);
+    };
+    mql.addEventListener?.('change', handler);
+    return () => mql.removeEventListener?.('change', handler);
+  }, [isClient, userSelected]);
+
+  useEffect(() => {
+    if (!isClient) return;
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === THEMES.DARK) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
   }, [theme, isClient]);
 
-  // テーマ切り替え関数
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK);
+    setTheme((prev) => {
+      const next = prev === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
+      if (isClient) localStorage.setItem(STORAGE_KEY, next);
+      setUserSelected(true);
+      return next;
+    });
   };
 
-  // ダークモードかどうかの判定
   const isDark = theme === THEMES.DARK;
 
-  // コンテキストの値
-  const value = {
-    theme,
-    setTheme,
-    toggleTheme,
-    isDark,
-    isClient
-  };
+  const value = { theme, setTheme, toggleTheme, isDark, isClient };
 
   return (
     <ThemeContext.Provider value={value}>

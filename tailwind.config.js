@@ -1,61 +1,56 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {  
+module.exports = {
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class', // クラスベースのダークモード切り替えを有効化
+  darkMode: 'class',
   theme: {
-    extend: {      
+    extend: {
       colors: {
-        // ダークモード用カラー（現在のカラー）
-        'primary': '#10b981', // エメラルドグリーン - GitHub風
-        'secondary': '#3b82f6', // ブルー - VS Code風
-        'accent': '#f59e0b', // アンバー - 警告色風
-        
-        // テキストカラー - ダークテーマ対応
-        'text-main': '#f8fafc', // ライトグレー（ダーク背景用）
-        'text-sub': '#94a3b8', // ミディアムグレー
-        'text-muted': '#64748b', // ダークグレー
-        
-        // 背景色 - ダークエンジニア風
-        'bg-primary': '#0f172a', // ダークネイビー - メイン背景
-        'bg-secondary': '#1e293b', // ダークスレート - セカンド背景
-        'bg-tertiary': '#334155', // ライトスレート - カード背景
-        
-        // コード風カラー
-        'code-bg': '#1e1e1e', // VS Code背景風
-        'code-border': '#333333', // コードブロックボーダー
-        'terminal-green': '#00d562', // ターミナルグリーン
-        
-        // ライトモード用カラー（light- プレフィックス付き）
-        'light-primary': '#0ea5e9', // スカイブルー - エンジニア感を保つ
-        'light-secondary': '#1e40af', // ダークブルー
-        'light-accent': '#dc2626', // レッド - ライトモードでの警告色
-        
-        // ライトモード用テキストカラー
-        'light-text-main': '#1f2937', // ダークグレー（ライト背景用）
-        'light-text-sub': '#4b5563', // ミディアムグレー
-        'light-text-muted': '#6b7280', // ライトグレー
-        
-        // ライトモード用背景色
-        'light-bg-primary': '#f8fafc', // ライトグレー - メイン背景
-        'light-bg-secondary': '#f1f5f9', // オフホワイト - セカンド背景
-        'light-bg-tertiary': '#e2e8f0', // ライトスレート - カード背景
-        
-        // ライトモード用コードカラー
-        'light-code-bg': '#f4f4f5', // ライトグレー背景
-        'light-code-border': '#d1d5db', // ライトボーダー
-        'light-terminal-green': '#059669', // ダークグリーン（視認性向上）
-        
-        // 従来カラー（互換性維持）
-        'background': '#0f172a', // ダーク背景に変更
+        // ===== Dark Mode: Gameplay HUD (落ち着き + 技術的集中感) =====
+        'primary': '#22D3EE',        // cyan-400 / HUDグロー
+        'secondary': '#8B5CF6',      // violet-500
+        'accent': '#F472B6',         // pink-400 / 抑えたハイライト
+
+        'text-main': '#E2E8F0',      // slate-200
+        'text-sub': '#94A3B8',       // slate-400
+        'text-muted': '#64748B',     // slate-500
+
+        'bg-primary': '#0B0F1A',     // deep navy (HUD背景)
+        'bg-secondary': '#111827',   // gray-900
+        'bg-tertiary': '#1F2937',    // gray-800 (カード背景)
+
+        'code-bg': '#0F172A',
+        'code-border': '#334155',    // slate-700
+        'terminal-green': '#22D3EE', // 旧名は primary と同値に集約
+
+        // ===== Light Mode: Game Title Screen (ポップ + エネルギッシュ) =====
+        'light-primary': '#F97316',     // orange-500
+        'light-secondary': '#EC4899',   // pink-500
+        'light-accent': '#7C3AED',      // violet-600
+
+        'light-text-main': '#1C1917',   // stone-900
+        'light-text-sub': '#44403C',    // stone-700
+        'light-text-muted': '#78716C',  // stone-500
+
+        'light-bg-primary': '#FFF7ED',  // orange-50 (クリーム地)
+        'light-bg-secondary': '#FFEDD5',// orange-100
+        'light-bg-tertiary': '#FED7AA', // orange-200 (カード背景)
+
+        'light-code-bg': '#FFFBF5',
+        'light-code-border': '#FDBA74', // orange-300
+        'light-terminal-green': '#F97316',
+
+        // 互換維持
+        'background': '#0B0F1A',
       },
       fontFamily: {
-        'body': ['"Inter"', 'sans-serif'],
+        'body': ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
         'mono': ['"Fira Code"', '"JetBrains Mono"', 'monospace'],
+        'display': ['"M PLUS Rounded 1c"', '"Inter"', '"Noto Sans JP"', 'sans-serif'],
       },
     },
   },
