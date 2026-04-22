@@ -4,135 +4,122 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useTheme } from '../../contexts/ThemeContext';
-import type { EventItem, EventType } from '../../lib/events';
+import SectionBanner from '../hud/SectionBanner';
+import type { EventItem, EventType, EventStatus } from '../../lib/events';
 
 type Props = { events: EventItem[] };
 
 const TYPE_LABEL: Record<EventType, string> = {
-  internship: 'インターン',
-  hackathon: 'ハッカソン',
-  conference: 'カンファレンス',
-  other: 'その他',
+  internship: 'INTERNSHIP',
+  hackathon: 'HACKATHON',
+  conference: 'CONFERENCE',
+  other: 'EVENT',
+};
+
+const STATUS_META: Record<EventStatus, { label: string; symbol: string; cls: string }> = {
+  COMPLETED: { label: 'COMPLETED', symbol: '◆', cls: 'text-rarity-rare border-rarity-rare/50' },
+  IN_PROGRESS: { label: 'IN PROGRESS', symbol: '◇', cls: 'text-rarity-legendary border-rarity-legendary/50' },
+  SCHEDULED: { label: 'SCHEDULED', symbol: '◈', cls: 'text-rarity-epic border-rarity-epic/50' },
 };
 
 function typeBadgeClass(type: EventType, isDark: boolean) {
   if (isDark) {
     switch (type) {
-      case 'internship': return 'bg-secondary/15 text-secondary border-secondary/40';
-      case 'hackathon': return 'bg-accent/15 text-accent border-accent/40';
-      case 'conference': return 'bg-primary/15 text-primary border-primary/40';
-      default: return 'bg-bg-tertiary text-text-sub border-code-border';
+      case 'internship': return 'text-primary border-primary/40';
+      case 'hackathon': return 'text-accent border-accent/40';
+      case 'conference': return 'text-secondary border-secondary/40';
+      default: return 'text-text-sub border-code-border';
     }
   }
   switch (type) {
-    case 'internship': return 'bg-light-secondary/15 text-light-secondary border-light-secondary/40';
-    case 'hackathon': return 'bg-light-accent/15 text-light-accent border-light-accent/40';
-    case 'conference': return 'bg-light-primary/15 text-light-primary border-light-primary/40';
-    default: return 'bg-light-bg-tertiary text-light-text-sub border-light-code-border';
+    case 'internship': return 'text-light-primary border-light-primary/40';
+    case 'hackathon': return 'text-light-accent border-light-accent/40';
+    case 'conference': return 'text-light-secondary border-light-secondary/40';
+    default: return 'text-light-text-sub border-light-code-border';
   }
 }
 
 export default function EventsSection({ events }: Props) {
   const { isDark } = useTheme();
-
-  const sectionBg = isDark ? 'bg-bg-secondary text-text-main' : 'bg-light-bg-secondary text-light-text-main';
-  const cardBg = isDark ? 'bg-bg-primary border-code-border' : 'bg-light-bg-primary border-light-code-border';
+  const sectionBg = isDark ? 'bg-bg-primary text-text-main' : 'bg-light-bg-primary text-light-text-main';
+  const cardBg = isDark ? 'bg-bg-secondary border-code-border' : 'bg-light-bg-secondary border-light-code-border';
   const muted = isDark ? 'text-text-sub' : 'text-light-text-sub';
-  const heading = isDark ? 'text-primary' : 'text-light-primary';
-  const lineColor = isDark ? 'bg-code-border' : 'bg-light-code-border';
+  const subtle = isDark ? 'text-text-muted' : 'text-light-text-muted';
+  const accent = isDark ? 'text-primary' : 'text-light-primary';
 
   return (
-    <section
-      id="events"
-      className={`py-24 sm:py-28 md:py-32 transition-colors duration-300 ${sectionBg}`}
-    >
-      <div className="max-w-5xl mx-auto px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-3 ${heading}`}
-        >
-          参加イベント / インターン
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className={`mb-12 text-base sm:text-lg ${muted}`}
-        >
-          外に出て学んだこと、これから学ぶこと。
-        </motion.p>
+    <section id="events" className={`py-24 sm:py-28 md:py-32 ${sectionBg}`}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <SectionBanner
+          stage="STAGE_03"
+          title="QUEST LOG — ACHIEVEMENTS"
+          subtitle="外に出て学んだこと、これから学ぶこと。"
+          count={events.length}
+        />
 
-        <div className="relative">
-          {/* 縦線 */}
-          <div className={`absolute left-4 sm:left-[7.5rem] top-0 bottom-0 w-px ${lineColor}`} aria-hidden />
-
-          <div className="space-y-8">
-            {events.map((ev, i) => (
-              <motion.article
+        <ol className="space-y-5">
+          {events.map((ev, i) => {
+            const status = ev.status ?? 'COMPLETED';
+            const smeta = STATUS_META[status];
+            return (
+              <motion.li
                 key={ev.slug}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="relative flex flex-col sm:flex-row gap-4"
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className={`relative rounded-xl border p-5 sm:p-6 ${cardBg} hud-corner-frame ${accent}`}
               >
-                {/* 日付 */}
-                <div className={`sm:w-28 sm:text-right sm:pr-6 text-xs sm:text-sm font-mono ${muted} pl-10 sm:pl-0`}>
-                  {ev.period}
-                </div>
-
-                {/* ドット */}
-                <div
-                  className={`absolute left-4 sm:left-[7.5rem] top-1 -translate-x-1/2 w-3 h-3 rounded-full border-2 ${
-                    isDark ? 'bg-bg-primary border-primary' : 'bg-light-bg-primary border-light-primary'
-                  }`}
-                  aria-hidden
-                />
-
-                {/* カード */}
-                <div className={`flex-1 rounded-xl border p-5 ml-10 sm:ml-6 ${cardBg}`}>
-                  <div className="flex items-center flex-wrap gap-2 mb-2">
-                    <span className={`px-2 py-0.5 text-[11px] rounded border ${typeBadgeClass(ev.type, isDark)}`}>
+                {/* top line: quest id + status */}
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className={`text-[10px] font-mono tracking-[0.25em] ${subtle}`}>
+                      QUEST_{String(i + 1).padStart(3, '0')}
+                    </span>
+                    <span className={`text-[10px] font-mono tracking-widest border px-2 py-0.5 rounded-sm ${typeBadgeClass(ev.type, isDark)}`}>
                       {TYPE_LABEL[ev.type]}
                     </span>
-                    <span className={`text-xs ${muted}`}>{ev.organizer}</span>
+                    <span className={`text-[10px] font-mono tracking-widest border px-2 py-0.5 rounded-sm ${smeta.cls}`}>
+                      {smeta.symbol} {smeta.label}
+                    </span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2">{ev.title}</h3>
-                  <p className={`text-sm ${muted} mb-3`}>{ev.summary}</p>
-                  {ev.learnings && ev.learnings.trim().length > 0 && (
-                    <div className={`tech-writeup text-sm ${muted}`}>
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{ev.learnings}</ReactMarkdown>
-                    </div>
-                  )}
-                  {ev.url && (
-                    <a
-                      href={ev.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-block mt-3 text-xs underline ${heading}`}
-                    >
-                      詳細を見る →
-                    </a>
+                  {typeof ev.xp === 'number' && (
+                    <span className={`shrink-0 font-display font-bold text-sm text-rarity-legendary`}>
+                      + {ev.xp.toLocaleString()} XP
+                    </span>
                   )}
                 </div>
-              </motion.article>
-            ))}
-          </div>
 
-          {/* 空状態 / 末尾のプレースホルダ */}
-          <div className={`relative mt-8 pl-10 sm:pl-[8.5rem] text-xs ${muted}`}>
-            <div
-              className={`absolute left-4 sm:left-[7.5rem] top-1 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-dashed ${
-                isDark ? 'bg-bg-primary border-code-border' : 'bg-light-bg-primary border-light-code-border'
-              }`}
-              aria-hidden
-            />
-            今後も随時更新予定。
-          </div>
+                <div className={`text-xs font-mono ${muted} mb-2`}>
+                  {ev.period} · {ev.organizer}
+                </div>
+                <h3 className={`font-display font-bold text-xl sm:text-2xl mb-2`}>
+                  {ev.title}
+                </h3>
+                <p className={`text-sm ${muted} mb-3`}>{ev.summary}</p>
+                {ev.learnings && ev.learnings.trim().length > 0 && (
+                  <div className={`tech-writeup text-sm ${muted} border-l-2 pl-3 mt-3 ${isDark ? 'border-code-border' : 'border-light-code-border'}`}>
+                    <div className={`text-[10px] font-mono tracking-widest mb-1 ${subtle}`}>[ LOG ]</div>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{ev.learnings}</ReactMarkdown>
+                  </div>
+                )}
+                {ev.url && (
+                  <a
+                    href={ev.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-block mt-3 text-xs font-mono tracking-widest underline ${accent}`}
+                  >
+                    VIEW_DETAILS ▸
+                  </a>
+                )}
+              </motion.li>
+            );
+          })}
+        </ol>
+
+        <div className={`mt-6 text-center text-[11px] font-mono tracking-widest ${subtle}`}>
+          [ MORE QUESTS INCOMING ]
         </div>
       </div>
     </section>

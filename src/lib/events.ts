@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export type EventType = 'internship' | 'hackathon' | 'conference' | 'other';
+export type EventStatus = 'COMPLETED' | 'IN_PROGRESS' | 'SCHEDULED';
 
 export type EventItem = {
   slug: string;
@@ -14,6 +15,8 @@ export type EventItem = {
   learnings?: string;
   url?: string;
   logo?: string;
+  xp?: number;
+  status?: EventStatus;
 };
 
 const EVENTS_DIR = path.join(process.cwd(), 'content', 'events');

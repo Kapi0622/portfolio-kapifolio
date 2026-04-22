@@ -8,5 +8,7 @@
   "summary": "プロフェッショナルグレードのアーキテクチャパターンを実践形式で学ぶ3ヶ月間のインターン。",
   "learnings": "TODO: 学びを具体化する。MVP, DI, Clean Architecture など現場水準のパターンを実装ベースで習得。",
   "url": "",
-  "logo": ""
+  "logo": "",
+  "xp": 2500,
+  "status": "SCHEDULED"
 }
