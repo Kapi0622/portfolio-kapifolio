@@ -1,0 +1,12 @@
+{
+  "slug": "cyberagent-game-client-college",
+  "title": "Game Client College",
+  "organizer": "CyberAgent",
+  "period": "2026/01〜2026/03",
+  "startDate": "2026-01",
+  "type": "internship",
+  "summary": "プロフェッショナルグレードのアーキテクチャパターンを実践形式で学ぶ3ヶ月間のインターン。",
+  "learnings": "TODO: 学びを具体化する。MVP, DI, Clean Architecture など現場水準のパターンを実装ベースで習得。",
+  "url": "",
+  "logo": ""
+}

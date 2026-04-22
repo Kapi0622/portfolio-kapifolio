@@ -44,6 +44,7 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
     { name: 'このサイトについて', href: '#about-site' }, // サイト紹介セクションへのリンク
     { name: '自己紹介', href: '#about-me' },          // 自己紹介セクションへのリンク
     { name: '成果物', href: '#works' },                // 制作物セクションへのリンク
+    { name: '参加イベント', href: '#events' },         // 参加イベント/インターンセクションへのリンク
     { name: '略歴', href: '#profile' },            // プロフィールセクションへのリンク
     { name: 'お問い合わせ', href: '#contact' },            // お問い合わせセクションへのリンク
   ];
