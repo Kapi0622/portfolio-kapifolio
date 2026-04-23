@@ -7,36 +7,6 @@ import type { ProfileData } from '../../lib/profile';
 
 type Props = { profile: ProfileData };
 
-const CHAR_STATS = [
-  { label: 'UNITY', pct: 80 },
-  { label: 'C#', pct: 78 },
-  { label: 'NEXT.JS', pct: 70 },
-];
-
-function MiniStat({ label, pct, isDark }: { label: string; pct: number; isDark: boolean }) {
-  const fill = isDark ? 'bg-primary' : 'bg-light-primary';
-  const bg = isDark ? 'bg-bg-primary' : 'bg-light-bg-primary';
-  const border = isDark ? 'border-code-border' : 'border-light-code-border';
-  const muted = isDark ? 'text-text-muted' : 'text-light-text-muted';
-  return (
-    <div>
-      <div className={`flex justify-between text-[10px] font-mono tracking-widest mb-1 ${muted}`}>
-        <span>{label}</span>
-        <span>{pct}</span>
-      </div>
-      <div className={`h-1.5 rounded-sm overflow-hidden border ${border} ${bg}`}>
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${pct}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className={`h-full ${fill}`}
-        />
-      </div>
-    </div>
-  );
-}
-
 export default function ProfileSection({ profile }: Props) {
   const { isDark } = useTheme();
   const sectionBg = isDark ? 'bg-bg-secondary text-text-main' : 'bg-light-bg-secondary text-light-text-main';
