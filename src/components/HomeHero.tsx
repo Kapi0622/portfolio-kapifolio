@@ -94,7 +94,7 @@ export default function HomeHero() {
             transition={{ delay: 1.25, duration: 0.5 }}
             className={`mt-3 text-sm max-w-xl ${muted}`}
           >
-            Unity / C# を中心にゲームを作り、React / Next.js で Web も作る。MVP や State Pattern など、保守性の高いアーキテクチャを意識した設計を好みます。
+            Unity / C# を中心にゲームを作り、趣味で Web も作る。
           </motion.p>
 
           {/* Stats ticker */}

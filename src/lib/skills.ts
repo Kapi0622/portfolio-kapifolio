@@ -1,12 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-export type SkillLevel = 'proficient' | 'learning' | 'familiar';
+export type SkillLevel = 1 | 2 | 3 | 4 | 5;
 
 export type SkillItem = {
   name: string;
   level: SkillLevel;
-  levelPercent?: number;
   note?: string;
 };
 

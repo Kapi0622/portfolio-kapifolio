@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx next *)",
+      "Bash(BUILD_FINISHED *)",
+      "Bash(echo \"EXIT=$?\")",
+      "Read(//tmp/**)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(curl -s -o /dev/null -w \"\" http://localhost:3456/)",
+      "Bash(curl -s -o /dev/null -w \"HOME=%{http_code}\\\\n\" http://localhost:3456/)",
+      "Bash(curl -s -o /dev/null -w \"DETAIL_osouji=%{http_code}\\\\n\" http://localhost:3456/works/osouji-robo)",
+      "Bash(curl -s -o /dev/null -w \"DETAIL_kapi=%{http_code}\\\\n\" http://localhost:3456/works/kapifolio)",
+      "Bash(curl -s -o /dev/null -w \"DETAIL_404=%{http_code}\\\\n\" http://localhost:3456/works/nonexistent)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(npm install *)"
+    ]
+  }
+}

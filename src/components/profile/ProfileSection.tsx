@@ -91,21 +91,12 @@ export default function ProfileSection({ profile }: Props) {
                 EQUIPPED
               </div>
               <div className="flex flex-wrap gap-1.5 mb-6">
-                {['Unity', 'C#', 'Next.js', 'TypeScript'].map((t) => (
+                {['Unity', 'C#'].map((t) => (
                   <span key={t} className={`px-2 py-0.5 text-[11px] rounded border ${
                     isDark ? 'bg-bg-tertiary border-code-border' : 'bg-light-bg-tertiary border-light-code-border'
                   }`}>
                     {t}
                   </span>
-                ))}
-              </div>
-
-              <div className={`text-[10px] font-mono tracking-[0.3em] mb-2 ${subtle}`}>
-                STATS
-              </div>
-              <div className="space-y-2">
-                {CHAR_STATS.map((s) => (
-                  <MiniStat key={s.label} label={s.label} pct={s.pct} isDark={isDark} />
                 ))}
               </div>
             </div>

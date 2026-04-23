@@ -4,39 +4,41 @@
       "name": "Game Development",
       "code": "GAME",
       "items": [
-        { "name": "Unity", "level": "proficient", "levelPercent": 80, "note": "主力ツール。2D/3D 両方の開発経験あり" },
-        { "name": "C#", "level": "proficient", "levelPercent": 78, "note": "Unity 開発で日常的に使用" },
-        { "name": "R3", "level": "learning", "levelPercent": 35, "note": "リアクティブプログラミング (UniRx 後継) を学習中" },
-        { "name": "UniTask", "level": "learning", "levelPercent": 35, "note": "GC アロケーション 0 の非同期処理" }
+        { "name": "Unity", "level": 4, "note": "主力ツール。2D/3D 両方の開発経験あり" },
+        { "name": "C#", "level": 4, "note": "Unity 開発で日常的に使用" },
+        { "name": "R3", "level": 2, "note": "リアクティブプログラミングを学習中" },
+        { "name": "UniTask", "level": 2, "note": "GC アロケーション 0 の非同期処理を学習中" }
       ]
     },
     {
       "name": "Web Development",
       "code": "WEB",
       "items": [
-        { "name": "TypeScript", "level": "proficient", "levelPercent": 70 },
-        { "name": "React", "level": "proficient", "levelPercent": 70 },
-        { "name": "Next.js", "level": "proficient", "levelPercent": 70, "note": "App Router / SSG" },
-        { "name": "Tailwind CSS", "level": "proficient", "levelPercent": 75 },
-        { "name": "Ruby / Rails", "level": "familiar", "levelPercent": 35, "note": "SAKITO チームでの学習中" }
+        { "name": "TypeScript", "level": 2, "note": "Vibe Cording" },
+        { "name": "React", "level": 2, "note": "Vibe Cording" },
+        { "name": "Next.js", "level": 2, "note": "Vibe Cording" },
+        { "name": "Tailwind CSS", "level": 2, "note": "Vibe Cording" },
+        { "name": "Ruby / Rails", "level": 1, "note": "SAKITO チームでの学習中" }
       ]
     },
     {
       "name": "Architecture / Pattern",
       "code": "ARCH",
       "items": [
-        { "name": "MVP", "level": "proficient", "levelPercent": 65 },
-        { "name": "Strategy Pattern", "level": "learning", "levelPercent": 45 },
-        { "name": "State Pattern", "level": "learning", "levelPercent": 45 }
+        { "name": "MVP", "level": 4, "note": "Unity プロジェクトで採用・設計した経験あり" },
+        { "name": "Strategy Pattern", "level": 2 },
+        { "name": "State Pattern", "level": 2 }
       ]
     },
     {
       "name": "Tools",
       "code": "TOOLS",
       "items": [
-        { "name": "Git / GitHub", "level": "proficient", "levelPercent": 80 },
-        { "name": "Docker", "level": "familiar", "levelPercent": 40 },
-        { "name": "Figma", "level": "familiar", "levelPercent": 40 }
+        { "name": "Git / GitHub", "level": 4 },
+        { "name": "Claude Code", "level": 3, "note": "コード生成やリファクタリング、設計相談など幅広く活用" },
+        { "name": "Notion", "level": 4, "note": "ドキュメント作成やタスク管理に使用" },
+        { "name": "Docker", "level": 1, "note": "基本的な使用経験あり" },
+        { "name": "Figma", "level": 2 }
       ]
     }
   ]

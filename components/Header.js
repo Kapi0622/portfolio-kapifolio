@@ -73,81 +73,81 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
     : 'bg-transparent';
 
   return (
-    <motion.header
-      initial={{ y: -60 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`sticky top-0 z-50 transition-all duration-300 ${bg}`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-10">
-        <div className="flex items-center justify-between h-14">
-          {/* ロゴ */}
-          <Link
-            href="/"
-            className={`font-display font-bold tracking-[0.1em] text-lg sm:text-xl flex items-center gap-2 ${
-              isDark ? 'text-text-main' : 'text-light-text-main'
-            }`}
-          >
-            <span className={`text-xs font-mono opacity-60 ${isDark ? 'text-primary' : 'text-light-primary'}`}>▸</span>
-            KAPI
-            <span className={isDark ? 'text-primary' : 'text-light-primary'}>.</span>
-            FOLIO
-          </Link>
-
-          {/* デスクトップナビ */}
-          <nav className="hidden md:flex items-center gap-5">
-            {navLinks.map((link) => {
-              const active = activeId === link.id;
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={`group relative font-mono text-[11px] tracking-[0.2em] transition-colors ${
-                    active
-                      ? isDark ? 'text-primary' : 'text-light-primary'
-                      : isDark ? 'text-text-sub hover:text-primary' : 'text-light-text-sub hover:text-light-primary'
-                  }`}
-                >
-                  <span className="mr-1 opacity-70">{String(navLinks.indexOf(link) + 1).padStart(2, '0')}</span>
-                  {link.name}
-                  <span
-                    className={`absolute left-0 -bottom-1.5 h-px transition-all duration-300 ${
-                      active ? 'w-full' : 'w-0 group-hover:w-full'
-                    } ${isDark ? 'bg-primary' : 'bg-light-primary'}`}
-                  />
-                </a>
-              );
-            })}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
-            <PartyButton
-              active={isPartyActive}
-              onToggle={() => setIsPartyActive(!isPartyActive)}
-              isDark={isDark}
-            />
-            <button
-              onClick={() => setIsOpen((v) => !v)}
-              aria-label={isOpen ? 'メニューを閉じる' : 'メニューを開く'}
-              className={`md:hidden w-8 h-8 rounded-md border flex items-center justify-center ${
-                isDark
-                  ? 'border-code-border text-text-main'
-                  : 'border-light-code-border text-light-text-main'
+    <>
+      <motion.header
+        initial={{ y: -60 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`sticky top-0 z-50 transition-all duration-300 ${bg}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-10">
+          <div className="flex items-center justify-between h-14">
+            {/* ロゴ */}
+            <Link
+              href="/"
+              className={`font-display font-bold tracking-[0.1em] text-lg sm:text-xl flex items-center gap-2 ${
+                isDark ? 'text-text-main' : 'text-light-text-main'
               }`}
             >
-              {isOpen ? <FiX size={16} /> : <FiMenu size={16} />}
-            </button>
+              <span className={`text-xs font-mono opacity-60 ${isDark ? 'text-primary' : 'text-light-primary'}`}>▸</span>
+              KAPIFOLIO
+            </Link>
+
+            {/* デスクトップナビ */}
+            <nav className="hidden md:flex items-center gap-5">
+              {navLinks.map((link) => {
+                const active = activeId === link.id;
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className={`group relative font-mono text-[11px] tracking-[0.2em] transition-colors ${
+                      active
+                        ? isDark ? 'text-primary' : 'text-light-primary'
+                        : isDark ? 'text-text-sub hover:text-primary' : 'text-light-text-sub hover:text-light-primary'
+                    }`}
+                  >
+                    <span className="mr-1 opacity-70">{String(navLinks.indexOf(link) + 1).padStart(2, '0')}</span>
+                    {link.name}
+                    <span
+                      className={`absolute left-0 -bottom-1.5 h-px transition-all duration-300 ${
+                        active ? 'w-full' : 'w-0 group-hover:w-full'
+                      } ${isDark ? 'bg-primary' : 'bg-light-primary'}`}
+                    />
+                  </a>
+                );
+              })}
+            </nav>
+
+            <div className="flex items-center gap-2">
+              <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
+              <PartyButton
+                active={isPartyActive}
+                onToggle={() => setIsPartyActive(!isPartyActive)}
+                isDark={isDark}
+              />
+              <button
+                onClick={() => setIsOpen((v) => !v)}
+                aria-label={isOpen ? 'メニューを閉じる' : 'メニューを開く'}
+                className={`md:hidden w-8 h-8 rounded-md border flex items-center justify-center ${
+                  isDark
+                    ? 'bg-bg-primary border-code-border text-text-main hover:bg-bg-tertiary'
+                    : 'bg-light-bg-primary border-light-code-border text-light-text-main hover:bg-light-bg-tertiary'
+                }`}
+              >
+                {isOpen ? <FiX size={16} /> : <FiMenu size={16} />}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </motion.header>
 
-      {/* モバイルメニュー */}
+      {/* モバイルメニュー（motion.headerの外に出してtransformの影響を回避） */}
       <AnimatePresence>
         {isOpen && (
           <>
             <motion.div
-              className="fixed inset-0 bg-black/60 z-30 md:hidden"
+              className="fixed inset-0 bg-black/60 z-40 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -158,7 +158,7 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 320, damping: 30 }}
-              className={`fixed top-0 right-0 h-full w-72 z-40 md:hidden border-l p-6 pt-20 font-mono ${
+              className={`fixed top-0 right-0 h-full w-72 z-50 md:hidden border-l p-6 pt-20 font-mono ${
                 isDark
                   ? 'bg-bg-primary border-code-border'
                   : 'bg-light-bg-primary border-light-code-border'
@@ -193,7 +193,7 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
           </>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 };
 
