@@ -55,7 +55,7 @@ export default function HudChrome() {
         <span className={`h-1.5 w-1.5 rounded-full ${isDark ? 'bg-primary' : 'bg-light-primary'} animate-pulse`} />
         <span>SYS_ONLINE</span>
         <span className="opacity-60">/</span>
-        <span>KAPI.FOLIO v2.0</span>
+        <span>KAPIFOLIO v2.0</span>
       </div>
 
       {/* Top-right clock (hidden on narrow) */}

@@ -13,7 +13,11 @@
       "Bash(curl -s -o /dev/null -w \"DETAIL_404=%{http_code}\\\\n\" http://localhost:3456/works/nonexistent)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(cat *)",
+      "Bash(npm run *)",
+      "Bash(npx tsc *)",
+      "Bash(python3 -c \"import json; json.load\\(open\\('content/works/mudra.json'\\)\\); json.load\\(open\\('content/works/osouji-robo.json'\\)\\); print\\('OK'\\)\")"
     ]
   }
 }

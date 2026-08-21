@@ -36,7 +36,7 @@ const Works = ({ works }) => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <SectionBanner
           stage="STAGE_01"
-          title="ARSENAL — UNLOCKED PROJECTS"
+          title="作品一覧"
           subtitle="これまでに携わった成果物。カードをクリックで詳細ページへ。"
           count={items.length}
         />

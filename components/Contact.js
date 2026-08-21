@@ -36,7 +36,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <SectionBanner
           stage="STAGE_05"
-          title="TRANSMISSION — COMMS OPEN"
+          title="お問い合わせ"
           subtitle="周波数を合わせて送信してください。通常 24 時間以内に返信します。"
         />
 

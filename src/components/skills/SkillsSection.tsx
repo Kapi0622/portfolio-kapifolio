@@ -47,7 +47,7 @@ export default function SkillsSection({ skills }: Props) {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <SectionBanner
           stage="STAGE_02"
-          title="STATUS PANEL — SKILLS"
+          title="スキル"
           subtitle="ステータスはおよその自己評価。カテゴリをクリックで切替。"
         />
 

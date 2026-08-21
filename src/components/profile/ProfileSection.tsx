@@ -22,7 +22,7 @@ export default function ProfileSection({ profile }: Props) {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <SectionBanner
           stage="STAGE_04"
-          title="CHARACTER PROFILE"
+          title="プロフィール"
           subtitle="これまでの歩みと、ものづくりへの向き合いかた。"
         />
 

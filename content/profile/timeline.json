@@ -5,7 +5,7 @@
     { "year": "2020", "title": "Unity / C# でプログラミング初挑戦", "note": "高1、父親から譲り受けた PC で挫折しつつも継続。" },
     { "year": "2024", "title": "大学入学、ものづくり活動を本格化", "note": "知的好奇心に任せて制作を始める。" },
     { "year": "2025", "title": "SAKITO で PM、unity1week 出展、加賀五彩パズル公開", "note": "チーム運営と個人制作を並行。" },
-    { "year": "2026", "title": "CyberAgent Game Client College 参加、「お掃除ロボ、暴走中」開発開始", "note": "プロフェッショナルなアーキテクチャを実践で学ぶ。" }
+    { "year": "2026", "title": "CyberAgent Game Client College 参加、「お掃除ロボ、暴走中」「MUDRA」開発開始", "note": "プロフェッショナルなアーキテクチャを実践で学ぶ。" }
   ],
   "essay": {
     "title": "ものづくりのポリシー",

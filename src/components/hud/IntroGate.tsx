@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const STORAGE_KEY = 'kapifolio_intro_seen';
 
 const BOOT_LOG = [
-  '> INIT: KAPI.FOLIO v2.0',
+  '> INIT: KAPIFOLIO v2.0',
   '> LOADING SYSTEMS ... OK',
   '> LINK_ESTABLISHED',
 ];
@@ -103,7 +103,7 @@ export default function IntroGate() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="font-display font-bold text-5xl sm:text-7xl md:text-8xl tracking-widest hud-glow-text text-[#22D3EE]"
             >
-              KAPI.EXE
+              KAPIFOLIO
             </motion.h1>
             <motion.div
               initial={{ opacity: 0 }}

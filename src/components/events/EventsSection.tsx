@@ -52,7 +52,7 @@ export default function EventsSection({ events }: Props) {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <SectionBanner
           stage="STAGE_03"
-          title="QUEST LOG — ACHIEVEMENTS"
+          title="活動実績"
           subtitle="外に出て学んだこと、これから学ぶこと。"
           count={events.length}
         />

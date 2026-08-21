@@ -7,7 +7,8 @@
         { "name": "Unity", "level": 4, "note": "主力ツール。2D/3D 両方の開発経験あり" },
         { "name": "C#", "level": 4, "note": "Unity 開発で日常的に使用" },
         { "name": "R3", "level": 2, "note": "リアクティブプログラミングを学習中" },
-        { "name": "UniTask", "level": 2, "note": "GC アロケーション 0 の非同期処理を学習中" }
+        { "name": "UniTask", "level": 2, "note": "GC アロケーション 0 の非同期処理を学習中" },
+        { "name": "MediaPipe", "level": 2, "note": "Webカメラからの手ランドマーク検出を実践中" }
       ]
     },
     {

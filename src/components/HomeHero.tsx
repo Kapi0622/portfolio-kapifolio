@@ -67,7 +67,7 @@ export default function HomeHero() {
             className={`font-display font-extrabold tracking-tight leading-[0.9] ${main}`}
             style={{ fontSize: 'clamp(3rem, 13vw, 9rem)' }}
           >
-            KAPI<span className={accent}>.</span>EXE
+            KAPI<span className={accent}>FOLIO</span>
           </motion.h1>
 
           <motion.div

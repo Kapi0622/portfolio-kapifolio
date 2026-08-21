@@ -8,11 +8,11 @@ import { useTheme } from '../src/contexts/ThemeContext';
 import { useScrollSpy } from '../src/hooks/useScrollSpy';
 
 const navLinks = [
-  { name: 'WORKS', jp: '成果物', href: '/#works', id: 'works' },
-  { name: 'SKILLS', jp: 'スキル', href: '/#skills', id: 'skills' },
-  { name: 'QUESTS', jp: 'イベント', href: '/#events', id: 'events' },
-  { name: 'PROFILE', jp: '略歴', href: '/#profile', id: 'profile' },
-  { name: 'COMMS', jp: '連絡', href: '/#contact', id: 'contact' },
+  { name: '作品', href: '/#works', id: 'works' },
+  { name: 'スキル', href: '/#skills', id: 'skills' },
+  { name: '活動実績', href: '/#events', id: 'events' },
+  { name: 'プロフィール', href: '/#profile', id: 'profile' },
+  { name: 'お問い合わせ', href: '/#contact', id: 'contact' },
 ];
 
 const SPY_IDS = navLinks.map((l) => l.id);
@@ -180,12 +180,7 @@ const Header = ({ isPartyActive, setIsPartyActive }) => {
                     }`}
                   >
                     <span className="opacity-50 text-[10px] w-6">{String(i + 1).padStart(2, '0')}</span>
-                    <div>
-                      <div className="tracking-widest">{link.name}</div>
-                      <div className={`text-[10px] ${isDark ? 'text-text-muted' : 'text-light-text-muted'}`}>
-                        {link.jp}
-                      </div>
-                    </div>
+                    <div className="tracking-widest">{link.name}</div>
                   </a>
                 ))}
               </div>
