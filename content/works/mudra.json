@@ -1,5 +1,6 @@
 {
   "slug": "mudra",
+  "category": "game",
   "title": "MUDRA",
   "order": -1,
   "genre": "Webカメラ手印認識アクションゲーム",
@@ -23,6 +24,7 @@
     "ScriptableObject"
   ],
   "mainImage": "/images/work/mudra/mudra-logo.png",
+  "video": "https://www.youtube.com/watch?v=OXeevxjCwSA",
   "images": [
     "/images/work/mudra/mudra-mage1.png",
     "/images/work/mudra/mudra-mage2.png"

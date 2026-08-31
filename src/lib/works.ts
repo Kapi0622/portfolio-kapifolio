@@ -1,15 +1,20 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import type { WorkCategory } from './workCategories';
 
 export type WorkLink = { label: string; url: string };
 
 export type Rarity = 'COMMON' | 'RARE' | 'EPIC' | 'LEGENDARY';
+
+export type { WorkCategory } from './workCategories';
+export { WORK_CATEGORY_LABELS, WORK_CATEGORY_ORDER } from './workCategories';
 
 export type Work = {
   slug: string;
   title: string;
   order?: number;
   genre: string;
+  category?: WorkCategory;
   period: string;
   developmentType: string;
   teamInfo?: string;
@@ -18,6 +23,7 @@ export type Work = {
   architecture?: string[];
   mainImage: string;
   images: string[];
+  /** YouTube動画URL（watch/youtu.be形式）。指定時は詳細ページのヒーロー部分でmainImageの代わりに表示 */
   video?: string;
   links: WorkLink[];
   summary: string;
@@ -44,7 +50,9 @@ export function getWorkSlugs(): string[] {
 }
 
 export function getAllWorks(): Work[] {
-  const works = getWorkSlugs().map(readWorkFile);
+  const works = getWorkSlugs()
+    .map(readWorkFile)
+    .map((w) => ({ ...w, category: w.category ?? 'other' }));
   return works.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
 

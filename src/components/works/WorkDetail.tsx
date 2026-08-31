@@ -10,11 +10,13 @@ import { FiArrowLeft, FiExternalLink } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 import type { Work } from '../../lib/works';
+import { getYoutubeEmbedUrl } from '../../lib/youtube';
 
 type Props = { work: Work };
 
 export default function WorkDetail({ work }: Props) {
   const { isDark } = useTheme();
+  const embedUrl = work.video ? getYoutubeEmbedUrl(work.video) : null;
 
   const sectionBg = isDark ? 'bg-bg-primary text-text-main' : 'bg-light-bg-primary text-light-text-main';
   const cardBg = isDark ? 'bg-bg-secondary border-code-border' : 'bg-light-bg-secondary border-light-code-border';
@@ -53,21 +55,32 @@ export default function WorkDetail({ work }: Props) {
           </p>
         </motion.header>
 
-        {/* ヒーロー画像 */}
+        {/* ヒーロー画像 / 紹介動画 */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className={`relative w-full aspect-video rounded-2xl overflow-hidden border shadow-xl mb-10 ${cardBg}`}
         >
-          <Image
-            src={work.mainImage}
-            alt={work.title}
-            fill
-            className="object-contain"
-            sizes="(max-width: 768px) 100vw, 1024px"
-            priority
-          />
+          {embedUrl ? (
+            <iframe
+              src={embedUrl}
+              title={work.title}
+              className="absolute inset-0 w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          ) : (
+            <Image
+              src={work.mainImage}
+              alt={work.title}
+              fill
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, 1024px"
+              priority
+            />
+          )}
         </motion.div>
 
         {/* 2 カラムレイアウト */}

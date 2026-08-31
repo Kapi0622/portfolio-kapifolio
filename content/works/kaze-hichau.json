@@ -1,5 +1,6 @@
 {
   "slug": "kaze-hichau",
+  "category": "game",
   "title": "[ゲーム]かぜ、ひいちゃう",
   "order": 4,
   "genre": "バンサバライクカジュアルゲーム",
@@ -14,6 +15,7 @@
   ],
   "architecture": [],
   "mainImage": "/images/work/kaze-hichau/kaze-hichau.png",
+  "video": "https://www.youtube.com/watch?v=MJD95pkJFpc",
   "images": [
     "/images/work/kaze-hichau/kaze-hichau-1.png",
     "/images/work/kaze-hichau/kaze-hichau-2.png",

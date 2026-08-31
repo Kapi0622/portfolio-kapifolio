@@ -1,5 +1,6 @@
 {
   "slug": "kagagosai",
+  "category": "game",
   "title": "[ゲーム]加賀五彩パズル",
   "order": 5,
   "genre": "デジタルパズルゲーム",
@@ -14,6 +15,7 @@
   ],
   "architecture": [],
   "mainImage": "/images/work/kagagosai/kagagosai.png",
+  "video": "https://www.youtube.com/watch?v=xPg8g9XDadU",
   "images": [
     "/images/work/kagagosai/kagagosai-1.png",
     "/images/work/kagagosai/kagagosai-2.png",

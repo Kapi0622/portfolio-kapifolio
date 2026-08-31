@@ -27,6 +27,7 @@
       "code": "ARCH",
       "items": [
         { "name": "MVP", "level": 4, "note": "Unity プロジェクトで採用・設計した経験あり" },
+        { "name": "Observer Pattern", "level": 3 },
         { "name": "Strategy Pattern", "level": 2 },
         { "name": "State Pattern", "level": 2 }
       ]
