@@ -86,7 +86,7 @@ export default function HomeHero() {
             transition={{ delay: 1.1, duration: 0.5 }}
             className={`mt-8 text-lg sm:text-xl md:text-2xl font-medium max-w-2xl ${main}`}
           >
-            ゲームと Web で、日常に<span className={isDark ? 'text-secondary' : 'text-light-secondary'}>彩り</span>と<span className={accent}>活力</span>を生み出すエンジニア。
+            ゲームで、新たな<span className={isDark ? 'text-secondary' : 'text-light-secondary'}>驚き</span>と<span className={accent}>感動</span>を届ける。
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
@@ -94,7 +94,7 @@ export default function HomeHero() {
             transition={{ delay: 1.25, duration: 0.5 }}
             className={`mt-3 text-sm max-w-xl ${muted}`}
           >
-            Unity / C# を中心にゲームを作り、趣味で Web も作る。
+            Unity / C# を中心にゲームを作っています。<br />
           </motion.p>
 
           {/* Stats ticker */}
